@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>MicroPy | Admin</title>
+    <link rel="shortcut icon" href="favicon.png" type="image/png">
+    <link rel="stylesheet" href="css/bootstrap.min.css">
+    <link rel="stylesheet" href="css/all.min.css">
+    <link rel="stylesheet" href="css/animate.min.css">
+    <link rel="stylesheet" href="css/admin.css">
+</head>
+
+<body>
+    <div class="panel-admin animated zoomInDown">
+        <img src="img/logo.png" class="img-fluid" alt="logo">
+        <div class="input-group mb-1">
+            <div class="input-group-prepend">
+                <span class="input-group-text" id="basic-addon-usuario">
+                    <i class="fas fa-user"></i>
+                </span>
+            </div>
+            <input type="text" class="form-control" placeholder="Usuario" id="usuario_usuario" name="usuario_usuario"
+                aria-label="Usuario" aria-describedby="basic-addon-usuario" autofocus>
+        </div>
+        <div class="input-group mb-1">
+            <div class="input-group-prepend">
+                <span class="input-group-text" id="basic-addon-clave">
+                    <i class="fas fa-key"></i>
+                </span>
+            </div>
+            <input type="password" class="form-control" placeholder="Contraseña" id="clave_usuario" name="clave_usuario"
+                aria-label="Clave" aria-describedby="basic-addon-clave">
+        </div>
+        <div class="btn-group d-flex" role="group" aria-label="Botonera">
+            <button type="button" class="btn btn-primary" onclick="ingresar()">
+                <i class="fas fa-sign-in-alt"></i> Ingresar
+            </button>
+            <button type="button" class="btn btn-danger" onclick="salir_admin()">
+                <i class="fas fa-sign-out-alt"></i> Salir
+            </button>
+          </div>
+    </div>
+
+    <script src="js/jquery.min.js"></script>
+    <script src="js/bootstrap.min.js"></script>
+    <script src="js/admin.js"></script>
+</body>
+
+</html>

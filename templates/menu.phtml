@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>MicroPy | Menu</title>
+    <link rel="stylesheet" href="css/bootstrap.min.css">
+    <link rel="stylesheet" href="css/all.min.css">
+    <link rel="stylesheet" href="css/animate.min.css">
+</head>
+
+<body>
+    <nav class="navbar navbar-expand-lg navbar-light bg-light navbar-inverse bg-inverse">
+        <a class="navbar-brand navbar-inverse bg-inverse" href="#">MicroPy</a>
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent"
+            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+
+        <div class="collapse navbar-collapse" id="navbarSupportedContent">
+            <ul class="navbar-nav mr-auto">
+                <li class="nav-item dropdown">
+                    <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button"
+                        data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                        Referenciales
+                    </a>
+                    <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+                        <a class="dropdown-item" href="#" onclick="cargar_formulario('frm/referenciales/productos/index.html')">Productos</a>
+                        <a class="dropdown-item" href="#" onclick="cargar_formulario('frm/referenciales/clientes/index.html')">Clientes</a>
+                        <div class="dropdown-divider"></div>
+                        <a class="dropdown-item" href="#">Proveedores</a>
+                        <div class="dropdown-divider"></div>
+                        <a class="dropdown-item" href="./admin">Salir</a>
+                    </div>
+                </li>
+                <li class="nav-item dropdown">
+                    <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button"
+                        data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                        Movimientos
+                    </a>
+                    <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+                        <a class="dropdown-item" href="#" onclick="cargar_formulario('frm/mantenimientos/usuarios/index.html')"></a>
+ 
+                    </div>
+                </li>
+                <li class="nav-item dropdown">
+                    <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button"
+                        data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                        Mantenimientos
+                    </a>
+                    <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+                        <a class="dropdown-item" href="#" onclick="cargar_formulario('frm/mantenimientos/usuarios/index.html')">Usuarios</a>
+                        <a class="dropdown-item" href="#" onclick="cargar_formulario('frm/mantenimientos/roles/index.html')">Roles</a>
+                        <a class="dropdown-item" href="#" onclick="cargar_formulario('frm/mantenimientos/formularios/index.html')">Formularios</a>
+                        <a class="dropdown-item" href="#" onclick="cargar_formulario('frm/mantenimientos/permisos/index.html')">Permisos</a>
+ 
+                    </div>
+                </li>
+                <li class="nav-item dropdown">
+                    <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button"
+                        data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                        Listados
+                    </a>
+                    <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+                        <a class="dropdown-item" href="#" onclick="cargar_formulario('frm/mantenimientos/usuarios/index.html')"></a>
+ 
+                    </div>
+                </li>
+                <li class="nav-item dropdown">
+                    <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button"
+                        data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                        Informes
+                    </a>
+                    <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+                        <a class="dropdown-item" href="#" onclick="cargar_formulario('frm/mantenimientos/usuarios/index.html')"></a>
+ 
+                    </div>
+                </li>
+            </ul>
+        </div>
+    </nav>
+
+    <div class="formularios">
+
+    </div>
+    <script src="js/jquery.min.js"></script>
+    <script src="js/bootstrap.min.js"></script>
+    <script src="js/menu.js"></script>
+</body>
+
+</html>

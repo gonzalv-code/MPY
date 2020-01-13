@@ -1,0 +1,23 @@
+/*
+selector{
+    atributo1:valor1;
+    atributo2:valor2;
+}
+*/
+body{
+    background-image: url(../img/fondo.jpg);
+    background-size: cover;
+    background-attachment: fixed;
+    background-position: center;
+}
+
+.panel-admin{
+    width: 350px;
+    height: 450px;
+    /*background-color: rgba(255,0,0,.5);*/
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    margin-top: -225px;
+    margin-left: -175px;
+}
