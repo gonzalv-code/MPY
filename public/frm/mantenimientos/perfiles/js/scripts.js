@@ -26,3 +26,66 @@ function buscar_id() {
             }
         });
 }
+
+function agregar() {
+    var nombre_perfil = $('#nombre_perfil').val();
+
+    var url = "/api/perfiles";
+    var data = { nombre_perfil: nombre_perfil };
+
+    fetch(url, {
+        method: "POST",
+        body: JSON.stringify(data),
+        headers: {
+            "Content-Type": "application/json"
+        }
+    })
+        .then(function (response) {
+            return response.json();
+        })
+        .then(function (myJson) {
+            console.log(myJson);
+
+        });
+}
+
+function modificar() {
+    var id_perfil = $('#id_perfil').val();
+    var nombre_perfil = $('#nombre_perfil').val();
+
+    var url = "/api/perfiles/"+id_perfil;
+    var data = { nombre_perfil: nombre_perfil };
+
+    fetch(url, {
+        method: "PUT",
+        body: JSON.stringify(data),
+        headers: {
+            "Content-Type": "application/json"
+        }
+    })
+        .then(function (response) {
+            return response.json();
+        })
+        .then(function (myJson) {
+            console.log(myJson);
+        });
+}
+
+function eliminar() {
+    var id_perfil = $('#id_perfil').val();
+
+    var url = "/api/perfiles/"+id_perfil;
+
+    fetch(url, {
+        method: "DELETE",
+        headers: {
+            "Content-Type": "application/json"
+        }
+    })
+        .then(function (response) {
+            return response.json();
+        })
+        .then(function (myJson) {
+            console.log(myJson);
+        });
+}
