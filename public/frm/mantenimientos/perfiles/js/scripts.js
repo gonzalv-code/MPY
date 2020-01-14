@@ -1,6 +1,6 @@
 $('#id_perfil').select();
 
-function buscar_id() {
+function buscar_id() {  // Buscar
     var id_perfil = $('#id_perfil').val();
     var url = "/api/perfiles/" + id_perfil;
 
@@ -27,7 +27,7 @@ function buscar_id() {
         });
 }
 
-function agregar() {
+function agregar() {  //Agregar
     var nombre_perfil = $('#nombre_perfil').val();
 
     var url = "/api/perfiles";
@@ -49,7 +49,7 @@ function agregar() {
         });
 }
 
-function modificar() {
+function modificar() {  //Modificar
     var id_perfil = $('#id_perfil').val();
     var nombre_perfil = $('#nombre_perfil').val();
 
@@ -71,7 +71,7 @@ function modificar() {
         });
 }
 
-function eliminar() {
+function eliminar() {  // Eliminar
     var id_perfil = $('#id_perfil').val();
 
     var url = "/api/perfiles/"+id_perfil;
