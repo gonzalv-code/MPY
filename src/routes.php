@@ -9,18 +9,18 @@ return function (App $app) {
     $container = $app->getContainer();
 
     $app->get('/', function (Request $request, Response $response, array $args) use ($container) {
-        // Mensaje de registro de muestra
+        // Sample log message
         $container->get('logger')->info("Slim-Skeleton '/' route");
 
-        // Renderizar vista de índice
+        // Render index view
         return $container->get('renderer')->render($response, 'index.phtml', $args);
     });
 
     $app->get('/admin', function (Request $request, Response $response, array $args) use ($container) {
-        // Mensaje de registro de muestra
+        // Sample log message
         $container->get('logger')->info("Slim-Skeleton '/admin' route");
 
-        // Renderizar vista de índice
+        // Render index view
         return $container->get('renderer')->render($response, 'admin.phtml', $args);
     });
 
@@ -28,7 +28,7 @@ return function (App $app) {
         // Sample log message
         $container->get('logger')->info("Slim-Skeleton '/menu' route");
 
-        // Renderizar vista de índice
+        // Render index view
         return $container->get('renderer')->render($response, 'menu.phtml', $args);
     });
 
@@ -66,7 +66,7 @@ return function (App $app) {
         return $response->withHeader('Access-Control-Allow-Origin', '*')
                         ->withJson($data, $code);
     });
-    // Conectar a la tabla Perfiles
+
     $app->get('/api/perfiles/{id}', function (Request $request, Response $response, array $args) use ($container) {
         $container->get('logger')->info("Slim-Skeleton '/api/usuarioss/login' route");
 
@@ -99,7 +99,7 @@ return function (App $app) {
         return $response->withHeader('Access-Control-Allow-Origin', '*')
                         ->withJson($data, $code);
     });
-    // Agregar datos a la bd
+
     $app->post('/api/perfiles', function (Request $request, Response $response, array $args) {
         $this->logger->info("Slim-Skeleton '/api/perfiles' post route");
         $datos = json_decode($request->getBody());
@@ -121,7 +121,7 @@ return function (App $app) {
         return $response->withHeader('Access-Control-Allow-Origin', '*')
                         ->withJson($data, 200);
     });
-    // Modificar datos de la bd
+
     $app->put('/api/perfiles/{id}', function (Request $request, Response $response, array $args) {
         $this->logger->info("Slim-Skeleton '/api/perfiles' post route");
         
@@ -149,7 +149,7 @@ return function (App $app) {
         return $response->withHeader('Access-Control-Allow-Origin', '*')
                         ->withJson($data, 200);
     });
-    // Borrar datos de la bd
+
     $app->delete('/api/perfiles/{id}', function (Request $request, Response $response, array $args) {
         $this->logger->info("Slim-Skeleton '/api/perfiles' post route");
         
