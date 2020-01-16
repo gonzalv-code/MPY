@@ -6,7 +6,7 @@ class Conexion{
     private $SERVIDOR = "localhost";
     private $PORT = 5432;
     private $USUARIO  = "postgres";
-    private $CLAVE = "1";
+    private $CLAVE = "123";
     private $BASEDATOS = "micropy";
     // Metodos o funciones
     public function conectar(){
