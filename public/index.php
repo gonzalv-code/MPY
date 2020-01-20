@@ -26,8 +26,15 @@ $middleware = require __DIR__ . '/../src/middleware.php';
 $middleware($app);
 
 // Register routes
-$routes = require __DIR__ . '/../src/routes.php';
+$routes = require __DIR__ . '/../src/routes/routes.php';
+$routes_usuarios = require __DIR__ . '/../src/routes/routes_usuarios.php';
+$routes_perfiles = require __DIR__ . '/../src/routes/routes_perfiles.php';
+$routes_formularios = require __DIR__ . '/../src/routes/routes_formularios.php';
+
 $routes($app);
+$routes_usuarios($app);
+$routes_perfiles($app);
+$routes_formularios($app);
 
 // Run app
 $app->run();

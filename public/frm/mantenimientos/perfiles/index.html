@@ -8,12 +8,11 @@
                 <label class="form-control-plaintext" for="id_producto">Id</label>
             </div>
             <div class="col-md-2">
-                <input type="text" class="form-control form-control-sm" id="id_perfil" name="id_perfil"
-                    onchange="buscar_id()" placeholder="Id" value="0">
+                <input type="text" class="form-control form-control-sm" id="id_perfil" name="id_perfil" onchange="buscar_id()"
+                    placeholder="Id" value="0">
             </div>
             <div class="col-md-1">
-                <button type="button" class="btn btn-sm btn-primary"
-                    onclick="cargar_busqueda('frm/mantenimientos/perfiles/buscar_perfiles.html')">
+                <button type="button" class="btn btn-sm btn-primary" onclick="cargar_busqueda('frm/mantenimientos/perfiles/buscar_perfiles.html')">
                     <i class="fas fa-search"></i>
                 </button>
             </div>
@@ -31,7 +30,7 @@
     </div>
     <div class="card-footer text-center">
         <button type="button" id="boton-agregar" class="btn btn-sm btn-primary" onclick="agregar()">Agregar</button>
-        <button type="button" id="boton-modificar" class="btn btn-sm btn-success"onclick="modificar()">Modificar</button>
+        <button type="button" id="boton-modificar" class="btn btn-sm btn-success" onclick="modificar()">Modificar</button>
         <button type="button" id="boton-eliminar" class="btn btn-sm btn-danger" onclick="eliminar()">Eliminar</button>
         <button type="button" class="btn btn-sm btn-warning" onclick="salir_formulario()">Salir</button>
     </div>

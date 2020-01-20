@@ -1,0 +1,68 @@
+<div class="card">
+    <div class="card-header text-center bg-primary text-white">
+        Formularios
+    </div>
+    <div class="card-body">
+        <div class="row">
+            <div class="col-md-2">
+                <label class="form-control-plaintext" for="id_producto">Id</label>
+            </div>
+            <div class="col-md-2">
+                <input type="text" class="form-control form-control-sm" id="id_formulario" name="id_formulario" onchange="buscar_id()"
+                    placeholder="Id" value="0">
+            </div>
+            <div class="col-md-1">
+                <button type="button" class="btn btn-sm btn-primary" onclick="cargar_busqueda('frm/mantenimientos/formularios/buscar_formularios.html')">
+                    <i class="fas fa-search"></i>
+                </button>
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="col-md-2">
+                <label class="form-control-plaintext" for="nombre_producto">Nombre</label>
+            </div>
+            <div class="col-md-10">
+                <input type="text" class="form-control form-control-sm" id="nombre_formulario" name="nombre_formulario"
+                    placeholder="Nombre" value="">
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="col-md-2">
+                <label class="form-control-plaintext" for="nombre_producto">Url</label>
+            </div>
+            <div class="col-md-10">
+                <input type="text" class="form-control form-control-sm" id="url_formulario" name="url_formulario"
+                    placeholder="URL" value="">
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="col-md-2">
+                <label class="form-control-plaintext" for="id_menu">Menu</label>
+            </div>
+            <div class="col-md-2">
+                <input type="text" class="form-control form-control-sm" id="id_menu" name="id_menu" onchange="buscar_id_menu()"
+                    placeholder="Id Menu" value="0">
+            </div>
+            <div class="col-md-1">
+                <button type="button" class="btn btn-sm btn-primary" onclick="cargar_busqueda('frm/mantenimientos/formularios/buscar_menus.html')">
+                    <i class="fas fa-search"></i>
+                </button>
+            </div>
+            <div class="col-md-7">
+                <input type="text" class="form-control form-control-sm" id="nombre_menu" name="nombre_menu"
+                    placeholder="Nombre Menu" readonly>
+            </div>
+        </div>
+    </div>
+    <div class="card-footer text-center">
+        <button type="button" id="boton-agregar" class="btn btn-sm btn-primary" onclick="agregar()">Agregar</button>
+        <button type="button" id="boton-modificar" class="btn btn-sm btn-success" onclick="modificar()">Modificar</button>
+        <button type="button" id="boton-eliminar" class="btn btn-sm btn-danger" onclick="eliminar()">Eliminar</button>
+        <button type="button" class="btn btn-sm btn-warning" onclick="salir_formulario()">Salir</button>
+    </div>
+</div>
+
+<script src="frm/mantenimientos/formularios/js/scripts.js"></script>

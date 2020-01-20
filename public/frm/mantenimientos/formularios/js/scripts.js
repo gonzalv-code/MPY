@@ -1,9 +1,9 @@
-$('#id_perfil').select();
+$('#id_formulario').select();
 habilitar_agregar();
 
 function buscar_id() {
-    var id_perfil = $('#id_perfil').val();
-    var url = "/api/perfiles/" + id_perfil;
+    var id_formulario = $('#id_formulario').val();
+    var url = "/api/formularios/" + id_formulario;
 
     fetch(url, {
         method: "GET",
@@ -17,14 +17,20 @@ function buscar_id() {
         .then(function (myJson) {
             console.log(myJson);
             if (myJson.datos.length > 0) {
-                $('#id_perfil').val(myJson.datos[0].id_perfil);
-                $('#nombre_perfil').val(myJson.datos[0].nombre_perfil);
-                $('#nombre_perfil').select();
+                $('#id_formulario').val(myJson.datos[0].id_formulario);
+                $('#nombre_formulario').val(myJson.datos[0].nombre_formulario);
+                $('#url_formulario').val(myJson.datos[0].url_formulario);
+                $('#id_menu').val(myJson.datos[0].id_menu);
+                $('#nombre_menu').val(myJson.datos[0].nombre_menu);
+                $('#nombre_formulario').select();
                 deshabilitar_agregar();
             } else {
-                $('#id_perfil').val(0);
-                $('#nombre_perfil').val("");
-                $('#nombre_perfil').select();
+                $('#id_formulario').val(0);
+                $('#nombre_formulario').val("");
+                $('#url_formulario').val("");
+                $('#id_menu').val("");
+                $('#nombre_menu').val("");
+                $('#nombre_formulario').select();
                 habilitar_agregar();
             }
         });
@@ -32,7 +38,7 @@ function buscar_id() {
 
 function buscar_nombre() {
 
-    var url = "/api/perfiles";
+    var url = "/api/formularios";
 
     fetch(url, {
         method: "GET",
@@ -48,10 +54,13 @@ function buscar_nombre() {
             $('#tbody_datos').html('');
             if (myJson.datos.length > 0) {
                 var filas = "";
-                myJson.datos.forEach(perfil => {
-                    filas += "<tr onclick='seleccionar_perfil($(this))'>";
-                    filas += " <td>" + perfil.id_perfil + "</td>";
-                    filas += " <td>" + perfil.nombre_perfil + "</td>";
+                myJson.datos.forEach(formulario => {
+                    filas += "<tr onclick='seleccionar_formulario($(this))'>";
+                    filas += " <td>" + formulario.id_formulario + "</td>";
+                    filas += " <td>" + formulario.nombre_formulario + "</td>";
+                    filas += " <td>" + formulario.url_formulario + "</td>";
+                    filas += " <td>" + formulario.id_menu + "</td>";
+                    filas += " <td>" + formulario.nombre_menu + "</td>";
                     filas += "</tr>";
                 });
             } else {
@@ -61,20 +70,20 @@ function buscar_nombre() {
         });
 }
 
-function seleccionar_perfil($this) {
-    var id_perfil = $this.find('td').eq(0).text();
-    var nombre_perfil = $this.find('td').eq(1).text();
-    $('#id_perfil').val(id_perfil);
-    $('#nombre_perfil').val(nombre_perfil);
-    salir_busqueda('#nombre_perfil');
+function seleccionar_formulario($this) {
+    var id_formulario = $this.find('td').eq(0).text();
+    var nombre_formulario = $this.find('td').eq(1).text();
+    $('#id_formulario').val(id_formulario);
+    $('#nombre_formulario').val(nombre_formulario);
+    salir_busqueda('#nombre_formulario');
     deshabilitar_agregar();
 }
 
 function agregar() {
-    var nombre_perfil = $('#nombre_perfil').val();
+    var nombre_formulario = $('#nombre_formulario').val();
 
-    var url = "/api/perfiles";
-    var data = { nombre_perfil: nombre_perfil };
+    var url = "/api/formularios";
+    var data = { nombre_formulario: nombre_formulario };
 
     fetch(url, {
         method: "POST",
@@ -93,11 +102,11 @@ function agregar() {
 }
 
 function modificar() {
-    var id_perfil = $('#id_perfil').val();
-    var nombre_perfil = $('#nombre_perfil').val();
+    var id_formulario = $('#id_formulario').val();
+    var nombre_formulario = $('#nombre_formulario').val();
 
-    var url = "/api/perfiles/" + id_perfil;
-    var data = { nombre_perfil: nombre_perfil };
+    var url = "/api/formularios/" + id_formulario;
+    var data = { nombre_formulario: nombre_formulario };
 
     fetch(url, {
         method: "PUT",
@@ -115,9 +124,9 @@ function modificar() {
 }
 
 function eliminar() {
-    var id_perfil = $('#id_perfil').val();
+    var id_formulario = $('#id_formulario').val();
 
-    var url = "/api/perfiles/" + id_perfil;
+    var url = "/api/formularios/" + id_formulario;
 
     fetch(url, {
         method: "DELETE",
