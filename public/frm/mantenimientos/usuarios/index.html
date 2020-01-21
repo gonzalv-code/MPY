@@ -7,14 +7,14 @@
             <div class="col-md-10">
                 <div class="row">
                     <div class="col-md-2">
-                        <label class="form-control-plaintext" for="id_producto">Id</label>
+                        <label class="form-control-plaintext" for="id_usuario">Id</label>
                     </div>
                     <div class="col-md-2">
-                        <input type="text" class="form-control form-control-sm" id="id_producto" name="id_producto"
+                        <input type="text" class="form-control form-control-sm" id="id_usuario" name="id_usuario"
                             placeholder="Id" value="0">
                     </div>
                     <div class="col-md-1">
-                        <button type="button" class="btn btn-sm btn-primary">
+                        <button type="button" class="btn btn-sm btn-primary" onclick="cargar_busqueda('frm/mantenimientos/usuarios/buscar_usuarios.html')">
                             <i class="fas fa-search"></i>
                         </button>
                     </div>
@@ -25,18 +25,28 @@
                         <label class="form-control-plaintext" for="nombre_producto">Nombre</label>
                     </div>
                     <div class="col-md-10">
-                        <input type="text" class="form-control form-control-sm" id="nombre_producto"
-                            name="nombre_producto" placeholder="Nombre" value="">
+                        <input type="text" class="form-control form-control-sm" id="nombre_usuario"
+                            name="nombre_usuario" placeholder="Nombre" value="">
                     </div>
                 </div>
 
                 <div class="row">
                     <div class="col-md-2">
-                        <label class="form-control-plaintext" for="precio_producto">Precio</label>
+                        <label class="form-control-plaintext" for="usuario_usuario">Usuario</label>
                     </div>
+                    <div class="col-md-10">
+                        <input type="text" class="form-control form-control-sm text-right" id="usuario_usuario"
+                            name="usuario_usuario" placeholder="Precio" value="0">
+                    </div>
+                </div>
+
+                <div class="row">
                     <div class="col-md-2">
+                        <label class="form-control-plaintext" for="precio_producto">Clave</label>
+                    </div>
+                    <div class="col-md-10">
                         <input type="text" class="form-control form-control-sm text-right" id="precio_producto"
-                            name="precio_producto" placeholder="Precio" value="0">
+                            name="usuario_usuario" placeholder="Precio" value="0">
                     </div>
                 </div>
             </div>

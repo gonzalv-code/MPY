@@ -1,0 +1,121 @@
+<div class="card">
+    <div class="card-header text-center bg-primary text-white">
+        Ventas
+    </div>
+    <div class="card-body">
+        <div class="row">
+            <div class="col-md-2">
+                <label class="form-control-plaintext" for="id_producto">Id</label>
+            </div>
+            <div class="col-md-2">
+                <input type="text" class="form-control form-control-sm" id="id_venta_cabecera" name="id_venta_cabecera" onchange="buscar_id()"
+                    placeholder="Id" value="0">
+            </div>
+            <div class="col-md-1">
+                <button type="button" class="btn btn-sm btn-primary" onclick="cargar_busqueda('frm/mantenimientos/formularios/buscar_formularios.html')">
+                    <i class="fas fa-search"></i>
+                </button>
+            </div>
+            <div class="col-md-2">
+                <label class="form-control-plaintext" for="emision_venta_cabecera">Emisión</label>
+            </div>
+            <div class="col-md-2">
+                <input type="date" class="form-control form-control-sm" id="emision_venta_cabecera" name="emision_venta_cabecera">
+            </div>
+            <div class="col-md-1">
+                <label class="form-control-plaintext" for="condicion_venta_cabecera">Condición</label>
+            </div>
+            <div class="col-md-2">
+                <select class="form-control form-control-sm" id="condicion_venta_cabecera" name="condicion_venta_cabecera">
+                    <option value="1">Contado</option>
+                    <option value="1">Credito</option>
+                </select>
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="col-md-2">
+                <label class="form-control-plaintext" for="nombre_producto">Nº Fiscal</label>
+            </div>
+            <div class="col-md-2">
+                <input type="text" class="form-control form-control-sm" id="nombre_formulario" name="nombre_formulario"
+                    placeholder="001-001-1234567" value="">
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="col-md-2">
+                <label class="form-control-plaintext" for="id_menu">Cliente</label>
+            </div>
+            <div class="col-md-2">
+                <input type="text" class="form-control form-control-sm" id="id_menu" name="id_menu" onchange="buscar_id_menu()"
+                    placeholder="Id Menu" value="0">
+            </div>
+            <div class="col-md-1">
+                <button type="button" class="btn btn-sm btn-primary" onclick="cargar_busqueda('frm/mantenimientos/formularios/buscar_menus.html')">
+                    <i class="fas fa-search"></i>
+                </button>
+            </div>
+            <div class="col-md-7">
+                <input type="text" class="form-control form-control-sm" id="nombre_menu" name="nombre_menu"
+                    placeholder="Nombre Menu" readonly>
+            </div>
+        </div>
+    </div>
+    <table class="table table-hover table-bordered table-striped">
+        <thead>
+            <tr>
+                <th>Id</th>
+                <th>Producto</th>
+                <th>Nombre</th>
+                <th>Iva</th>
+                <th>Nombre</th>
+                <th class="text-right">Cantidad</th>
+                <th class="text-right">Precio</th>
+                <th class="text-right">Total</th>
+                <th class="text-center" style="width: 100px">
+                    <button type="button" class="btn btn-sm btn-primary">
+                        <i class="fas fa-plus"></i>
+                    </button>
+                </th>
+            </tr>
+        </thead>
+        <tbody id="tbody_datos_detalle">
+            <tr>
+                <td>1</td>
+                <td>1</td>
+                <td>Nombre 1</td>
+                <td>1</td>
+                <td>Exento</td>
+                <td class="text-right">3</td>
+                <td class="text-right">1000</td>
+                <td class="text-right">3000</td>
+                <td class="text-center">
+                    <button type="button" class="btn btn-sm btn-primary">
+                        <i class="fas fa-pencil-alt"></i>
+                    </button>
+                    <button type="button" class="btn btn-sm btn-primary">
+                        <i class="fas fa-trash"></i>
+                    </button>
+                </td>
+            </tr>
+        </tbody>
+        <tfoot>
+            <tr>
+                <td colspan="7">TOTALES</td>
+                <td class="text-right">3000</td>
+                <td class="text-center">
+                    
+                </td>
+            </tr>
+        </tfoot>
+    </table>
+    <div class="card-footer text-center">
+        <button type="button" id="boton-agregar" class="btn btn-sm btn-primary" onclick="agregar()">Agregar</button>
+        <button type="button" id="boton-modificar" class="btn btn-sm btn-success" onclick="modificar()">Modificar</button>
+        <button type="button" id="boton-eliminar" class="btn btn-sm btn-danger" onclick="eliminar()">Eliminar</button>
+        <button type="button" class="btn btn-sm btn-warning" onclick="salir_formulario()">Salir</button>
+    </div>
+</div>
+
+<script src="frm/movimientos/ventas/js/scripts.js"></script>

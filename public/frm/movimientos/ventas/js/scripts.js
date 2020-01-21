@@ -2,8 +2,8 @@ $('#id_formulario').select();
 habilitar_agregar();
 
 function buscar_id() {
-    var id_formulario = $('#id_formulario').val();
-    var url = "/api/formularios/" + id_formulario;
+    var id_venta_cabecera = $('#id_venta_cabecera').val();
+    var url = "/api/ventas_cabeceras/" + id_ventacabecera;
 
     fetch(url, {
         method: "GET",
