@@ -1,56 +1,39 @@
 <div class="card">
     <div class="card-header text-center bg-primary text-white">
-        Clientes
+        clientes
     </div>
     <div class="card-body">
         <div class="row">
-            <div class="col-md-10">
-                <div class="row">
-                    <div class="col-md-2">
-                        <label class="form-control-plaintext" for="id_producto">Id</label>
-                    </div>
-                    <div class="col-md-2">
-                        <input type="text" class="form-control form-control-sm" id="id_producto" name="id_producto"
-                            placeholder="Id" value="0">
-                    </div>
-                    <div class="col-md-1">
-                        <button type="button" class="btn btn-sm btn-primary">
-                            <i class="fas fa-search"></i>
-                        </button>
-                    </div>
-                </div>
-
-                <div class="row">
-                    <div class="col-md-2">
-                        <label class="form-control-plaintext" for="nombre_producto">Nombre</label>
-                    </div>
-                    <div class="col-md-10">
-                        <input type="text" class="form-control form-control-sm" id="nombre_producto"
-                            name="nombre_producto" placeholder="Nombre" value="">
-                    </div>
-                </div>
-
-                <div class="row">
-                    <div class="col-md-2">
-                        <label class="form-control-plaintext" for="precio_producto">Precio</label>
-                    </div>
-                    <div class="col-md-2">
-                        <input type="text" class="form-control form-control-sm text-right" id="precio_producto"
-                            name="precio_producto" placeholder="Precio" value="0">
-                    </div>
-                </div>
+            <div class="col-md-2">
+                <label class="form-control-plaintext" for="id_producto">Id</label>
             </div>
             <div class="col-md-2">
-                <img src="img/productos/0.jpg" alt="Imagen">
+                <input type="text" class="form-control form-control-sm" id="id_cliente" name="id_cliente" onchange="buscar_id()"
+                    placeholder="Id" value="0">
+            </div>
+            <div class="col-md-1">
+                <button type="button" class="btn btn-sm btn-primary" onclick="cargar_busqueda('frm/referenciales/clientes/buscar_clientes.html')">
+                    <i class="fas fa-search"></i>
+                </button>
             </div>
         </div>
 
+        <div class="row">
+            <div class="col-md-2">
+                <label class="form-control-plaintext" for="nombre_producto">Nombre</label>
+            </div>
+            <div class="col-md-10">
+                <input type="text" class="form-control form-control-sm" id="nombre_cliente" name="nombre_cliente"
+                    placeholder="Nombre" value="">
+            </div>
+        </div>
     </div>
     <div class="card-footer text-center">
-        <button type="button" id="boton-agregar" class="btn btn-sm btn-primary">Agregar</button>
-        <button type="button" id="boton-modificar" class="btn btn-sm btn-success">Modificar</button>
-        <button type="button" id="boton-eliminar" class="btn btn-sm btn-danger">Eliminar</button>
+        <button type="button" id="boton-agregar" class="btn btn-sm btn-primary" onclick="agregar()">Agregar</button>
+        <button type="button" id="boton-modificar" class="btn btn-sm btn-success" onclick="modificar()">Modificar</button>
+        <button type="button" id="boton-eliminar" class="btn btn-sm btn-danger" onclick="eliminar()">Eliminar</button>
         <button type="button" class="btn btn-sm btn-warning" onclick="salir_formulario()">Salir</button>
     </div>
 </div>
+
 <script src="frm/referenciales/clientes/js/scripts.js"></script>

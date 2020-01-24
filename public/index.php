@@ -32,6 +32,7 @@ $routes_perfiles = require __DIR__ . '/../src/routes/routes_perfiles.php';
 $routes_formularios = require __DIR__ . '/../src/routes/routes_formularios.php';
 $routes_menus = require __DIR__ . '/../src/routes/routes_menus.php';
 $routes_ventas_cabeceras = require __DIR__ . '/../src/routes/routes_ventas_cabeceras.php';
+$routes_clientes = require __DIR__ . '/../src/routes/routes_clientes.php';
 
 $routes($app);
 $routes_usuarios($app);
@@ -39,6 +40,7 @@ $routes_perfiles($app);
 $routes_formularios($app);
 $routes_menus($app);
 $routes_ventas_cabeceras($app);
+$routes_clientes($app);
 
 // Run app
 $app->run();

@@ -12,7 +12,7 @@
                     placeholder="Id" value="0">
             </div>
             <div class="col-md-1">
-                <button type="button" class="btn btn-sm btn-primary" onclick="cargar_busqueda('frm/mantenimientos/formularios/buscar_formularios.html')">
+                <button type="button" class="btn btn-sm btn-primary" onclick="cargar_busqueda('frm/movimientos/ventas/buscar_ventas.html')">
                     <i class="fas fa-search"></i>
                 </button>
             </div>
@@ -35,30 +35,30 @@
 
         <div class="row">
             <div class="col-md-2">
-                <label class="form-control-plaintext" for="nombre_producto">Nº Fiscal</label>
+                <label class="form-control-plaintext" for="fiscal_venta_cabecera">Nº Fiscal</label>
             </div>
             <div class="col-md-2">
-                <input type="text" class="form-control form-control-sm" id="nombre_formulario" name="nombre_formulario"
+                <input type="text" class="form-control form-control-sm" id="fiscal_venta_cabecera" name="fiscal_venta_cabecera"
                     placeholder="001-001-1234567" value="">
             </div>
         </div>
 
         <div class="row">
             <div class="col-md-2">
-                <label class="form-control-plaintext" for="id_menu">Cliente</label>
+                <label class="form-control-plaintext" for="id_cliente">Cliente</label>
             </div>
             <div class="col-md-2">
-                <input type="text" class="form-control form-control-sm" id="id_menu" name="id_menu" onchange="buscar_id_menu()"
-                    placeholder="Id Menu" value="0">
+                <input type="text" class="form-control form-control-sm" id="id_cliente" name="id_cliente" onchange="buscar_id_cliente()"
+                    placeholder="Id cliente" value="0">
             </div>
             <div class="col-md-1">
-                <button type="button" class="btn btn-sm btn-primary" onclick="cargar_busqueda('frm/mantenimientos/formularios/buscar_menus.html')">
+                <button type="button" class="btn btn-sm btn-primary" onclick="cargar_busqueda('frm/movimientos/ventas/buscar_clientes.html')">
                     <i class="fas fa-search"></i>
                 </button>
             </div>
             <div class="col-md-7">
-                <input type="text" class="form-control form-control-sm" id="nombre_menu" name="nombre_menu"
-                    placeholder="Nombre Menu" readonly>
+                <input type="text" class="form-control form-control-sm" id="nombre_cliente" name="nombre_cliente"
+                    placeholder="Nombre cliente" readonly>
             </div>
         </div>
     </div>

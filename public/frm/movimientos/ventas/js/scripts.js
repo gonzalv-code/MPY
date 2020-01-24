@@ -1,9 +1,9 @@
-$('#id_formulario').select();
+$('#id_venta_cabecera').select();
 habilitar_agregar();
 
 function buscar_id() {
     var id_venta_cabecera = $('#id_venta_cabecera').val();
-    var url = "/api/ventas_cabeceras/" + id_ventacabecera;
+    var url = "/api/ventas_cabeceras/" + id_venta_cabecera;
 
     fetch(url, {
         method: "GET",
@@ -17,28 +17,30 @@ function buscar_id() {
         .then(function (myJson) {
             console.log(myJson);
             if (myJson.datos.length > 0) {
-                $('#id_formulario').val(myJson.datos[0].id_formulario);
-                $('#nombre_formulario').val(myJson.datos[0].nombre_formulario);
-                $('#url_formulario').val(myJson.datos[0].url_formulario);
-                $('#id_menu').val(myJson.datos[0].id_menu);
-                $('#nombre_menu').val(myJson.datos[0].nombre_menu);
-                $('#nombre_formulario').select();
+                $('#id_venta_cabecera').val(myJson.datos[0].id_venta_cabecera);
+                $('#fiscal_venta_cabecera').val(myJson.datos[0].fiscal_venta_cabecera);
+                $('#emision_venta_cabecera').val(myJson.datos[0].emision_venta_cabecera);
+                $('#condicion_venta_cabecera').val(myJson.datos[0].condicion_venta_cabecera);
+                $('#id_cliente').val(myJson.datos[0].id_cliente);
+                $('#nombre_cliente').val(myJson.datos[0].nombre_cliente);
+                $('#id_venta_cabecera').select();
                 deshabilitar_agregar();
             } else {
-                $('#id_formulario').val(0);
-                $('#nombre_formulario').val("");
-                $('#url_formulario').val("");
-                $('#id_menu').val("");
-                $('#nombre_menu').val("");
-                $('#nombre_formulario').select();
+                $('#id_venta_cabecera').val(0);
+                $('#fiscal_venta_cabecera').val("");
+                $('#emision_venta_cabecera').val("");
+                $('#condicion_venta_cabecera').val("");
+                $('#id_cliente').val("");
+                $('#nombre_cliente').val("");
+                $('#id_venta_cabecera').select();
                 habilitar_agregar();
             }
         });
 }
 
-function buscar_nombre() {
+function buscar_venta() {
 
-    var url = "/api/formularios";
+    var url = "/api/ventas";
 
     fetch(url, {
         method: "GET",
@@ -54,13 +56,14 @@ function buscar_nombre() {
             $('#tbody_datos').html('');
             if (myJson.datos.length > 0) {
                 var filas = "";
-                myJson.datos.forEach(formulario => {
-                    filas += "<tr onclick='seleccionar_formulario($(this))'>";
-                    filas += " <td>" + formulario.id_formulario + "</td>";
-                    filas += " <td>" + formulario.nombre_formulario + "</td>";
-                    filas += " <td>" + formulario.url_formulario + "</td>";
-                    filas += " <td>" + formulario.id_menu + "</td>";
-                    filas += " <td>" + formulario.nombre_menu + "</td>";
+                myJson.datos.forEach(venta => {
+                    filas += "<tr onclick='seleccionar_venta($(this))'>";
+                    filas += " <td>" + venta.id_venta_cabecera + "</td>";
+                    filas += " <td>" + venta.fiscal_venta_cabecera + "</td>";
+                    filas += " <td>" + venta.emision_venta_cabecera + "</td>";
+                    filas += " <td>" + venta.condicion_venta_cabecera + "</td>";
+                    filas += " <td>" + venta.id_cliente + "</td>";
+                    filas += " <td>" + venta.nombre_cliente + "</td>";
                     filas += "</tr>";
                 });
             } else {
@@ -70,32 +73,36 @@ function buscar_nombre() {
         });
 }
 
-function seleccionar_formulario($this) {
-    var id_formulario = $this.find('td').eq(0).text();
-    var nombre_formulario = $this.find('td').eq(1).text();
-    var url_formulario = $this.find('td').eq(2).text();
-    var id_menu = $this.find('td').eq(3).text();
-    var nombre_menu = $this.find('td').eq(4).text();
-    $('#id_formulario').val(id_formulario);
-    $('#nombre_formulario').val(nombre_formulario);
-    $('#url_formulario').val(url_formulario);
-    $('#id_menu').val(id_menu);
-    $('#nombre_menu').val(nombre_menu);
-    salir_busqueda('#nombre_formulario');
+function seleccionar_venta($this) {
+    var id_venta_cabecera = $this.find('td').eq(0).text();
+    var fiscal_venta_cabecera = $this.find('td').eq(1).text();
+    var emision_venta_cabecera = $this.find('td').eq(2).text();
+    var condicion_venta_cabecera = $this.find('td').eq(3).text();
+    var id_cliente = $this.find('td').eq(4).text();
+    var nombre_cliente = $this.find('td').eq(5).text();
+    $('#id_venta_cabecera').val(id_venta_cabecera);
+    $('#fiscal_venta_cabecera').val(fiscal_venta_cabecera);
+    $('#emision_venta_cabecera').val(emision_venta_cabecera);
+    $('#condicion_venta_cabecera').val(condicion_venta_cabecera);
+    $('#id_cliente').val(id_cliente);
+    $('#nombre_cliente').val(nombre_cliente);
+    salir_busqueda('#id_venta_cabecera');
     deshabilitar_agregar();
 }
 
 function agregar() {
-    var nombre_formulario = $('#nombre_formulario').val();
-    var url_formulario = $('#url_formulario').val();
-    var id_menu = $('#id_menu').val();
+    var fiscal_venta_cabecera = $('#fiscal_venta_cabecera').val();
+    var emision_venta_cabecera = $('#emision_venta_cabecera').val();
+    var condicion_venta_cabecera = $('#condicion_venta_cabecera').val();
+    var id_cliente = $('#id_cliente').val();
 
-    var url = "/api/formularios";
-    var data = { 
-                    nombre_formulario: nombre_formulario,
-                    url_formulario: url_formulario,
-                    id_menu: id_menu
-               };
+    var url = "/api/ventas";
+    var data = {
+                    fiscal_venta_cabecera: fiscal_venta_cabecera,
+                    emision_venta_cabecera: emision_venta_cabecera,
+                    condicion_venta_cabecera: condicion_venta_cabecera,
+                    id_cliente: id_cliente
+                };
 
     fetch(url, {
         method: "POST",
@@ -110,7 +117,7 @@ function agregar() {
         .then(function (myJson) {
             console.log(myJson);
             if (myJson.agregado) {
-                limpiar_formulario();
+                limpiar_venta();
             } else {
                 alert('Registro no agregado')
             }
@@ -118,27 +125,30 @@ function agregar() {
         });
 }
 
-function limpiar_formulario(){
-    $('#id_formulario').val(0);
-    $('#nombre_formulario').val("");
-    $('#url_formulario').val("");
-    $('#id_menu').val(0);
-    $('#nombre_menu').val("");
-    $('#id_formulario').select();
+function limpiar_formulario() {
+    $('#id_venta_cabecera').val(0);
+    $('#fiscal_venta_cabecera').val("");
+    $('#emision_venta_cabecera').val("");
+    $('#condicion_venta_cabecera').val("");
+    $('#id_cliente').val(0);
+    $('#nombre_cliente').val("");
+    $('#id_venta_cabecera').select();
 }
 
 function modificar() {
-    var id_formulario = $('#id_formulario').val();
-    var nombre_formulario = $('#nombre_formulario').val();
-    var url_formulario = $('#url_formulario').val();
-    var id_menu = $('#id_menu').val();
+    var id_venta_cabecera = $('#id_venta_cabecera').val();
+    var fiscal_venta_cabecera = $('#fiscal_venta_cabecera').val();
+    var emision_venta_cabecera = $('#emision_venta_cabecera').val();
+    var condicion_venta_cabecera = $('#condicion_venta_cabecera').val();
+    var id_cliente = $('#id_cliente').val();
 
-    var url = "/api/formularios/" + id_formulario;
-    var data = { 
-        nombre_formulario: nombre_formulario,
-        url_formulario: url_formulario,
-        id_menu: id_menu
-   };
+    var url = "/api/ventas/" + id_venta_cabecera;
+    var data = {
+        fiscal_venta_cabecera: fiscal_venta_cabecera,
+        emision_venta_cabecera: emision_venta_cabecera,
+        condicion_venta_cabecera: condicion_venta_cabecera,
+        id_cliente: id_cliente
+    };
 
     fetch(url, {
         method: "PUT",
@@ -161,9 +171,9 @@ function modificar() {
 }
 
 function eliminar() {
-    var id_formulario = $('#id_formulario').val();
+    var id_venta_cabecera = $('#id_venta_cabecera').val();
 
-    var url = "/api/formularios/" + id_formulario;
+    var url = "/api/ventas/" + id_venta_cabecera;
 
     fetch(url, {
         method: "DELETE",
@@ -184,10 +194,10 @@ function eliminar() {
         });
 }
 
-// Menu
-function buscar_id_menu() {
-    var id_menu = $('#id_menu').val();
-    var url = "/api/menus/" + id_menu;
+// Cliente -----------------------------------------------------------------------------------------------------------------------
+function buscar_id_cliente() {
+    var id_cliente = $('#id_cliente').val();
+    var url = "/api/clientes/" + id_cliente;
 
     fetch(url, {
         method: "GET",
@@ -201,18 +211,18 @@ function buscar_id_menu() {
         .then(function (myJson) {
             console.log(myJson);
             if (myJson.datos.length > 0) {
-                $('#id_menu').val(myJson.datos[0].id_menu);
-                $('#nombre_menu').val(myJson.datos[0].nombre_menu);
+                $('#id_cliente').val(myJson.datos[0].id_cliente);
+                $('#nombre_cliente').val(myJson.datos[0].nombre_cliente);
             } else {
-                $('#id_menu').val(0);
-                $('#nombre_menu').val("");
+                $('#id_cliente').val(0);
+                $('#nombre_cliente').val("");
             }
         });
 }
 
-function buscar_nombre_menu() {
+function buscar_nombre_cliente() {
 
-    var url = "/api/menus";
+    var url = "/api/clientes";
 
     fetch(url, {
         method: "GET",
@@ -228,10 +238,10 @@ function buscar_nombre_menu() {
             $('#tbody_datos').html('');
             if (myJson.datos.length > 0) {
                 var filas = "";
-                myJson.datos.forEach(menu => {
-                    filas += "<tr onclick='seleccionar_menu($(this))'>";
-                    filas += " <td>" + menu.id_menu + "</td>";
-                    filas += " <td>" + menu.nombre_menu + "</td>";
+                myJson.datos.forEach(cliente => {
+                    filas += "<tr onclick='seleccionar_cliente($(this))'>";
+                    filas += " <td>" + cliente.id_cliente + "</td>";
+                    filas += " <td>" + cliente.nombre_cliente + "</td>";
                     filas += "</tr>";
                 });
             } else {
@@ -241,10 +251,10 @@ function buscar_nombre_menu() {
         });
 }
 
-function seleccionar_menu($this) {
-    var id_menu = $this.find('td').eq(0).text();
-    var nombre_menu = $this.find('td').eq(1).text();
-    $('#id_menu').val(id_menu);
-    $('#nombre_menu').val(nombre_menu);
-    salir_busqueda('#id_menu');
+function seleccionar_cliente($this) {
+    var id_cliente = $this.find('td').eq(0).text();
+    var nombre_cliente = $this.find('td').eq(1).text();
+    $('#id_cliente').val(id_cliente);
+    $('#nombre_cliente').val(nombre_cliente);
+    salir_busqueda('#id_cliente');
 }
