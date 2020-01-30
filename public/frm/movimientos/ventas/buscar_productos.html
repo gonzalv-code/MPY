@@ -1,0 +1,26 @@
+<div class="card">
+    <div class="card-header text-center bg-primary text-white">
+        Buscar Productos
+    </div>
+    <div class="card-body">
+        <table class="table table-hover table-bordered table-striped">
+            <thead>
+                <tr>
+                    <th>Producto</th>
+                    <th>Nombre</th>
+                    <th>Precio</th>
+                </tr>
+            </thead>
+            <tbody id="tbody_datos">
+
+            </tbody>
+        </table>
+    </div>
+    <div class="card-footer text-center">
+        <button type="button" class="btn btn-sm btn-warning" onclick="salir_busqueda('#id_producto')">Salir</button>
+    </div>
+</div>
+
+<script>
+    buscar_nombre_producto();
+</script>

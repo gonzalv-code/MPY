@@ -8,23 +8,22 @@ require_once __DIR__ .'./../Conexion.php';
 return function (App $app) {
     $container = $app->getContainer();
 
-    $app->get('/api/ventas_cabeceras/{id}', function (Request $request, Response $response, array $args) use ($container) {
+    $app->get('/api/productos/{id}', function (Request $request, Response $response, array $args) use ($container) {
         $container->get('logger')->info("Slim-Skeleton '/api/usuarioss/login' route");
 
         $route = $request->getAttribute('route');
-        $id_venta_cabecera =  $route->getArgument('id');
+        $id_producto =  $route->getArgument('id');
 
-        error_log("---> ".$id_venta_cabecera);
+        error_log("---> ".$id_producto);
 
         $conexion = new Conexion();
         
         $pgsql  =  $conexion->conectar();
 
-        $sql = "SELECT * FROM ventas_cabeceras vs ".
-               "LEFT JOIN clientes c ON vs.id_cliente = c.id_cliente ".
-               "WHERE id_venta_cabecera = :id_venta_cabecera";
+        $sql = "SELECT * FROM productos ".
+               "WHERE id_producto = :id_producto";
         $stmt = $pgsql->prepare($sql); 
-        $stmt->bindParam(':id_venta_cabecera', $id_venta_cabecera); 
+        $stmt->bindParam(':id_producto', $id_producto); 
         
         if ($stmt->execute()) { 
             $data = $stmt->fetchAll(PDO::FETCH_OBJ);
@@ -42,15 +41,14 @@ return function (App $app) {
                         ->withJson($data, $code);
     });
 
-    $app->get('/api/ventas_cabeceras', function (Request $request, Response $response, array $args) use ($container) {
+    $app->get('/api/productos', function (Request $request, Response $response, array $args) use ($container) {
         $container->get('logger')->info("Slim-Skeleton '/api/usuarioss/login' route");
 
         $conexion = new Conexion();
         
         $pgsql  =  $conexion->conectar();
 
-        $sql = "SELECT * FROM ventas_cabeceras vs ".
-               "LEFT JOIN clientes c ON vs.id_cliente = c.id_cliente ";
+        $sql = "SELECT * FROM productos";
         $stmt = $pgsql->prepare($sql); 
         
         if ($stmt->execute()) { 
@@ -69,28 +67,23 @@ return function (App $app) {
                         ->withJson($data, $code);
     });
 
-    $app->post('/api/ventas_cabeceras', function (Request $request, Response $response, array $args) {
-        $this->logger->info("Slim-Skeleton '/api/ventas_cabeceras' post route");
+    $app->post('/api/productos', function (Request $request, Response $response, array $args) {
+        $this->logger->info("Slim-Skeleton '/api/productos' post route");
         $datos = json_decode($request->getBody());
-        $fiscal_venta_cabecera =  $datos->fiscal_venta_cabecera;
-        $emision_venta_cabecera =  $datos->emision_venta_cabecera;
-        $condicion_venta_cabecera =  $datos->condicion_venta_cabecera;
-        $id_cliente =  $datos->id_cliente;
+        $nombre_producto =  $datos->$nombre_producto;
+        $precio_producto =  $datos->$precio_producto;
         $conexion = new Conexion();
         $pgsql  =  $conexion->conectar();
-        $sql = "INSERT INTO ventas_cabeceras(fiscal_venta_cabecera, emision_venta_cabecera, condicion_venta_cabecera, id_cliente) VALUES(:fiscal_venta_cabecera, :emision_venta_cabecera, :condicion_venta_cabecera, :id_cliente)";
+        $sql = "INSERT INTO productos(nombre_productos, precio_producto) VALUES(:nombre_productos, :precio_producto)";
         $stmt = $pgsql->prepare($sql);
-        $stmt->bindParam(':fiscal_venta_cabecera', $fiscal_venta_cabecera);
-        $stmt->bindParam(':emision_venta_cabecera', $emision_venta_cabecera);
-        $stmt->bindParam(':condicion_venta_cabecera', $condicion_venta_cabecera);
-        $stmt->bindParam(':id_cliente', $id_cliente);
+        $stmt->bindParam(':nombre_producto', $nombre_producto);
+        $stmt->bindParam(':precio_producto', $precio_producto);
         $data = array('agregado' => true);
         try {
             $pgsql->beginTransaction();
             $stmt->execute();
             $pgsql->commit();
         }catch (Exception $e){
-            error_log($e);
             $pgsql->rollback();
             $data = array('agregado' => false);
         }
@@ -98,28 +91,23 @@ return function (App $app) {
                         ->withJson($data, 200);
     });
 
-    $app->put('/api/ventas_cabeceras/{id}', function (Request $request, Response $response, array $args) {
-        $this->logger->info("Slim-Skeleton '/api/ventas' post route");
+    $app->put('/api/productos/{id}', function (Request $request, Response $response, array $args) {
+        $this->logger->info("Slim-Skeleton '/api/productos' post route");
         
         $route = $request->getAttribute('route');
-        $id_venta_cabecera =  $route->getArgument('id');
+        $id_producto =  $route->getArgument('id');
 
         $datos = json_decode($request->getBody());
-        $fiscal_venta_cabecera =  $datos->fiscal_venta_cabecera;
-        $emision_venta_cabecera =  $datos->emision_venta_cabecera;
-        $condicion_venta_cabecera =  $datos->condicion_venta_cabecera;
-        $id_cliente =  $datos->id_cliente;
+        $nombre_producto =  $datos->nombre_producto;
+        $precio_producto =  $datos->precio_producto;
 
         $conexion = new Conexion();
         $pgsql  =  $conexion->conectar();
-        $sql = "UPDATE ventas_cabeceras SET fiscal_venta_cabecera = :fiscal_venta_cabecera, ".
-               "emision_venta_cabecera = :emision_venta_cabecera, condicion_venta_cabecera = :condicion_venta_cabecera, id_cliente = :id_cliente WHERE id_venta_cabecera = :id_venta_cabecera";
+        $sql = "UPDATE productos SET nombre_producto = :nombre_producto, precio_producto = :precio_producto WHERE id_producto = :id_producto";
         $stmt = $pgsql->prepare($sql);
-        $stmt->bindParam(':fiscal_venta_cabecera', $fiscal_venta_cabecera);
-        $stmt->bindParam(':emision_venta_cabecera', $emision_venta_cabecera);
-        $stmt->bindParam(':condicion_venta_cabecera', $condicion_venta_cabecera);
-        $stmt->bindParam(':id_cliente', $id_cliente);
-        $stmt->bindParam(':id_venta_cabecera', $id_venta_cabecera);
+        $stmt->bindParam(':nombre_producto', $nombre_producto);
+        $stmt->bindParam(':precio_producto', $precio_producto);
+        $stmt->bindParam(':id_producto', $id_producto);
         $data = array('modificado' => true);
         try {
             $pgsql->beginTransaction();
@@ -133,17 +121,17 @@ return function (App $app) {
                         ->withJson($data, 200);
     });
 
-    $app->delete('/api/ventas_cabeceras/{id}', function (Request $request, Response $response, array $args) {
-        $this->logger->info("Slim-Skeleton '/api/ventas' post route");
+    $app->delete('/api/productos/{id}', function (Request $request, Response $response, array $args) {
+        $this->logger->info("Slim-Skeleton '/api/productos' post route");
         
         $route = $request->getAttribute('route');
-        $id_venta_cabecera =  $route->getArgument('id');
+        $id_producto =  $route->getArgument('id');
 
         $conexion = new Conexion();
         $pgsql  =  $conexion->conectar();
-        $sql = "DELETE FROM ventas_cabeceras WHERE id_venta_cabecera = :id_venta_cabecera";
+        $sql = "DELETE FROM productos WHERE id_producto = :id_producto";
         $stmt = $pgsql->prepare($sql);
-        $stmt->bindParam(':id_venta_cabecera', $id_venta_cabecera);
+        $stmt->bindParam(':id_producto', $id_producto);
         $data = array('eliminado' => true);
         try {
             $pgsql->beginTransaction();
