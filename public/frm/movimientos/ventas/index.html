@@ -80,6 +80,7 @@
                 </div>
                 <div class="col-md-2">
                     <input type="text" class="form-control form-control-sm" id="id_producto" name="id_producto""
+                     onchange="buscar_id_producto()"
                      placeholder="Id Producto" value="0">
                 </div>
                 <div class="col-md-1">
@@ -170,6 +171,7 @@
         <button type="button" id="boton-agregar" class="btn btn-sm btn-primary" onclick="agregar()">Agregar</button>
         <button type="button" id="boton-modificar" class="btn btn-sm btn-success" onclick="modificar()">Modificar</button>
         <button type="button" id="boton-eliminar" class="btn btn-sm btn-danger" onclick="eliminar()">Eliminar</button>
+        <button type="button" id="boton-eliminar" class="btn btn-sm btn-danger" onclick="imprimir()">Imprimir</button>
         <button type="button" class="btn btn-sm btn-warning" onclick="salir_formulario()">Salir</button>
     </div>
 </div>

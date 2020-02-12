@@ -8,23 +8,22 @@ require_once __DIR__ .'./../Conexion.php';
 return function (App $app) {
     $container = $app->getContainer();
 
-    $app->get('/api/productos/{id}', function (Request $request, Response $response, array $args) use ($container) {
-        $container->get('logger')->info("Slim-Skeleton '/api/productos/login' route");
+    $app->get('/api/marcas/{id}', function (Request $request, Response $response, array $args) use ($container) {
+        $container->get('logger')->info("Slim-Skeleton '/api/usuarioss/login' route");
 
         $route = $request->getAttribute('route');
-        $id_producto =  $route->getArgument('id');
+        $id_marca =  $route->getArgument('id');
 
-        error_log("---> ".$id_producto);
+        error_log("---> ".$id_marca);
 
         $conexion = new Conexion();
         
         $pgsql  =  $conexion->conectar();
 
-        $sql = "SELECT * FROM productos p ".
-               "LEFT JOIN ivas i ON p.id_iva = i.id_iva ".
-               "WHERE id_producto = :id_producto";
+        $sql = "SELECT * FROM marcas ".
+               "WHERE id_marca = :id_marca";
         $stmt = $pgsql->prepare($sql); 
-        $stmt->bindParam(':id_producto', $id_producto); 
+        $stmt->bindParam(':id_marca', $id_marca); 
         
         if ($stmt->execute()) { 
             $data = $stmt->fetchAll(PDO::FETCH_OBJ);
@@ -42,15 +41,14 @@ return function (App $app) {
                         ->withJson($data, $code);
     });
 
-    $app->get('/api/productos', function (Request $request, Response $response, array $args) use ($container) {
-        $container->get('logger')->info("Slim-Skeleton '/api/productos/login' route");
+    $app->get('/api/marcas', function (Request $request, Response $response, array $args) use ($container) {
+        $container->get('logger')->info("Slim-Skeleton '/api/usuarioss/login' route");
 
         $conexion = new Conexion();
         
         $pgsql  =  $conexion->conectar();
 
-        $sql = "SELECT * FROM productos p ".
-               "LEFT JOIN ivas i ON p.id_iva = i.id_iva ";
+        $sql = "SELECT * FROM marcas";
         $stmt = $pgsql->prepare($sql); 
         
         if ($stmt->execute()) { 
@@ -69,19 +67,15 @@ return function (App $app) {
                         ->withJson($data, $code);
     });
 
-    $app->post('/api/productos', function (Request $request, Response $response, array $args) {
-        $this->logger->info("Slim-Skeleton '/api/productos' post route");
+    $app->post('/api/marcas', function (Request $request, Response $response, array $args) {
+        $this->logger->info("Slim-Skeleton '/api/marcas' post route");
         $datos = json_decode($request->getBody());
-        $nombre_producto =  $datos->nombre_producto;
-        $url_producto =  $datos->url_producto;
-        $id_iva =  $datos->id_iva;
+        $nombre_marca =  $datos->nombre_marca;
         $conexion = new Conexion();
         $pgsql  =  $conexion->conectar();
-        $sql = "INSERT INTO productos(nombre_producto, url_producto, id_iva) VALUES(:nombre_producto, :url_producto, :id_iva)";
+        $sql = "INSERT INTO marcas(nombre_marca) VALUES(:nombre_marca)";
         $stmt = $pgsql->prepare($sql);
-        $stmt->bindParam(':nombre_producto', $nombre_producto);
-        $stmt->bindParam(':url_producto', $url_producto);
-        $stmt->bindParam(':id_iva', $id_iva);
+        $stmt->bindParam(':nombre_marca', $nombre_marca);
         $data = array('agregado' => true);
         try {
             $pgsql->beginTransaction();
@@ -95,26 +89,21 @@ return function (App $app) {
                         ->withJson($data, 200);
     });
 
-    $app->put('/api/productos/{id}', function (Request $request, Response $response, array $args) {
-        $this->logger->info("Slim-Skeleton '/api/productos' post route");
+    $app->put('/api/marcas/{id}', function (Request $request, Response $response, array $args) {
+        $this->logger->info("Slim-Skeleton '/api/marcas' post route");
         
         $route = $request->getAttribute('route');
-        $id_producto =  $route->getArgument('id');
+        $id_marca =  $route->getArgument('id');
 
         $datos = json_decode($request->getBody());
-        $nombre_producto =  $datos->nombre_producto;
-        $url_producto =  $datos->url_producto;
-        $id_iva =  $datos->id_iva;
+        $nombre_marca =  $datos->nombre_marca;
 
         $conexion = new Conexion();
         $pgsql  =  $conexion->conectar();
-        $sql = "UPDATE productos SET nombre_producto = :nombre_producto, ".
-               "url_producto = :url_producto, id_iva = :id_iva WHERE id_producto = :id_producto";
+        $sql = "UPDATE marcas SET nombre_marca = :nombre_marca WHERE id_marca = :id_marca";
         $stmt = $pgsql->prepare($sql);
-        $stmt->bindParam(':nombre_producto', $nombre_producto);
-        $stmt->bindParam(':url_producto', $url_producto);
-        $stmt->bindParam(':id_iva', $id_iva);
-        $stmt->bindParam(':id_producto', $id_producto);
+        $stmt->bindParam(':nombre_marca', $nombre_marca);
+        $stmt->bindParam(':id_marca', $id_marca);
         $data = array('modificado' => true);
         try {
             $pgsql->beginTransaction();
@@ -128,17 +117,17 @@ return function (App $app) {
                         ->withJson($data, 200);
     });
 
-    $app->delete('/api/productos/{id}', function (Request $request, Response $response, array $args) {
-        $this->logger->info("Slim-Skeleton '/api/productos' post route");
+    $app->delete('/api/marcas/{id}', function (Request $request, Response $response, array $args) {
+        $this->logger->info("Slim-Skeleton '/api/marcas' post route");
         
         $route = $request->getAttribute('route');
-        $id_producto =  $route->getArgument('id');
+        $id_marca =  $route->getArgument('id');
 
         $conexion = new Conexion();
         $pgsql  =  $conexion->conectar();
-        $sql = "DELETE FROM productos WHERE id_producto = :id_producto";
+        $sql = "DELETE FROM marcas WHERE id_marca = :id_marca";
         $stmt = $pgsql->prepare($sql);
-        $stmt->bindParam(':id_producto', $id_producto);
+        $stmt->bindParam(':id_marca', $id_marca);
         $data = array('eliminado' => true);
         try {
             $pgsql->beginTransaction();

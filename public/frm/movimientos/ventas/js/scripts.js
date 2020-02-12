@@ -245,6 +245,7 @@ function buscar_nombre_cliente() {
                     filas += "<tr onclick='seleccionar_cliente($(this))'>";
                     filas += " <td>" + cliente.id_cliente + "</td>";
                     filas += " <td>" + cliente.nombre_cliente + "</td>";
+                    filas += " <td>" + cliente.ruc_cliente + "</td>";
                     filas += "</tr>";
                 });
             } else {
@@ -262,7 +263,7 @@ function seleccionar_cliente($this) {
     salir_busqueda('#id_cliente');
 }
 
-// Detalle venta--------------------------------------------------------------------------------------------------------------------------------------------------------
+// Detalle
 
 function buscar_id_venta_cabecera_ventas_detalles(){
     var id_venta_cabecera = $('#id_venta_cabecera').val();
@@ -485,11 +486,13 @@ function buscar_id_producto() {
             if (myJson.datos.length > 0) {
                 $('#id_producto').val(myJson.datos[0].id_producto);
                 $('#nombre_producto').val(myJson.datos[0].nombre_producto);
-                $('#precio_producto').val(myJson.datos[0].precio_producto);
+                $('#id_iva').val(myJson.datos[0].id_iva);
+                $('#precio_venta_detalle').val(myJson.datos[0].precio_producto);
             } else {
                 $('#id_producto').val(0);
                 $('#nombre_producto').val("");
-                $('#precio_producto').val("");
+                $('#id_iva').val("1");
+                $('#precio_venta_detalle').val(0);
             }
         });
 }
@@ -517,6 +520,8 @@ function buscar_nombre_producto() {
                     filas += " <td>" + producto.id_producto + "</td>";
                     filas += " <td>" + producto.nombre_producto + "</td>";
                     filas += " <td>" + producto.precio_producto + "</td>";
+                    filas += " <td>" + producto.id_iva + "</td>";
+                    filas += " <td>" + producto.nombre_iva + "</td>";
                     filas += "</tr>";
                 });
             } else {
@@ -529,9 +534,18 @@ function buscar_nombre_producto() {
 function seleccionar_producto($this) {
     var id_producto = $this.find('td').eq(0).text();
     var nombre_producto = $this.find('td').eq(1).text();
-    var precio_producto = $this.find('td').eq(2).text();
+    var precio_venta_detalle = $this.find('td').eq(2).text();
+    var id_iva = $this.find('td').eq(3).text();
     $('#id_producto').val(id_producto);
     $('#nombre_producto').val(nombre_producto);
-    $('#precio_producto').val(precio_producto);
-    salir_busqueda('#id_producto');
+    $('#precio_venta_detalle').val(precio_venta_detalle);
+    $('#id_iva').val(id_iva);
+    salir_busqueda('#cantidad_venta_detalle');
+}
+
+function imprimir() {
+    var ventana = window.open('rpt/ventas/imprimir.php',
+            'ventana',
+            'width=600 height=400, status=no scrollbars=no, location=no, resizable=no, manu=no');
+    //ventana.print();
 }

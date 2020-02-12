@@ -9,7 +9,7 @@ return function (App $app) {
     $container = $app->getContainer();
 
     $app->get('/api/clientes/{id}', function (Request $request, Response $response, array $args) use ($container) {
-        $container->get('logger')->info("Slim-Skeleton '/api/usuarioss/login' route");
+        $container->get('logger')->info("Slim-Skeleton '/api/clientes/login' route");
 
         $route = $request->getAttribute('route');
         $id_cliente =  $route->getArgument('id');
@@ -42,7 +42,7 @@ return function (App $app) {
     });
 
     $app->get('/api/clientes', function (Request $request, Response $response, array $args) use ($container) {
-        $container->get('logger')->info("Slim-Skeleton '/api/usuarioss/login' route");
+        $container->get('logger')->info("Slim-Skeleton '/api/clientes/login' route");
 
         $conexion = new Conexion();
         
@@ -71,11 +71,13 @@ return function (App $app) {
         $this->logger->info("Slim-Skeleton '/api/clientes' post route");
         $datos = json_decode($request->getBody());
         $nombre_cliente =  $datos->nombre_cliente;
+        $ruc_cliente =  $datos->ruc_cliente;
         $conexion = new Conexion();
         $pgsql  =  $conexion->conectar();
-        $sql = "INSERT INTO clientes(nombre_cliente) VALUES(:nombre_cliente)";
+        $sql = "INSERT INTO clientes(nombre_cliente, ruc_cliente) VALUES(:nombre_cliente, :ruc_cliente)";
         $stmt = $pgsql->prepare($sql);
         $stmt->bindParam(':nombre_cliente', $nombre_cliente);
+        $stmt->bindParam(':ruc_cliente', $ruc_cliente);
         $data = array('agregado' => true);
         try {
             $pgsql->beginTransaction();
@@ -97,12 +99,14 @@ return function (App $app) {
 
         $datos = json_decode($request->getBody());
         $nombre_cliente =  $datos->nombre_cliente;
+        $ruc_cliente =  $datos->ruc_cliente;
 
         $conexion = new Conexion();
         $pgsql  =  $conexion->conectar();
-        $sql = "UPDATE clientes SET nombre_cliente = :nombre_cliente WHERE id_cliente = :id_cliente";
+        $sql = "UPDATE clientes SET nombre_cliente = :nombre_cliente, ruc_cliente = :ruc_cliente WHERE id_cliente = :id_cliente";
         $stmt = $pgsql->prepare($sql);
         $stmt->bindParam(':nombre_cliente', $nombre_cliente);
+        $stmt->bindParam(':ruc_cliente', $ruc_cliente);
         $stmt->bindParam(':id_cliente', $id_cliente);
         $data = array('modificado' => true);
         try {

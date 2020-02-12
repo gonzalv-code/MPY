@@ -157,4 +157,16 @@ return function (App $app) {
                         ->withJson($data, 200);
     });
 
+    $app->get('/api/ventas_cabeceras/imprimir/{id}', function (Request $request, Response $response, array $args) {
+        $this->logger->info("Slim-Skeleton '/api/ventas_cabeceras/imprimir/{id}' post route");
+        
+        $response = $this->response->withHeader( 'Content-type', 'application/pdf' );
+        include ('../../php/contract/pdf.php');
+        $content = $pdf->toString();
+        $response->write($content);
+
+        return $response->withHeader('Access-Control-Allow-Origin', '*')
+                        ->withJson($data, 200);
+    });
+
 };
