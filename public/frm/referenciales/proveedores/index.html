@@ -1,0 +1,48 @@
+<div class="card">
+    <div class="card-header text-center bg-primary text-white">
+        Proveedores
+    </div>
+    <div class="card-body">
+        <div class="row">
+            <div class="col-md-2">
+                <label class="form-control-plaintext" for="id_proveedor">Id</label>
+            </div>
+            <div class="col-md-2">
+                <input type="text" class="form-control form-control-sm" id="id_proveedor" name="id_proveedor" onchange="buscar_id()"
+                    placeholder="Id" value="0">
+            </div>
+            <div class="col-md-1">
+                <button type="button" class="btn btn-sm btn-primary" onclick="cargar_busqueda('frm/referenciales/proveedores/buscar_proveedores.html')">
+                    <i class="fas fa-search"></i>
+                </button>
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="col-md-2">
+                <label class="form-control-plaintext" for="id_persona">Id</label>
+            </div>
+            <div class="col-md-10">
+                <input type="text" class="form-control form-control-sm" id="id_persona" name="id_persona"
+                    placeholder="Id" value="">
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-md-2">
+                <label class="form-control-plaintext" for="estado_proveedor">Estado</label>
+            </div>
+            <div class="col-md-10">
+                <input type="text" class="form-control form-control-sm" id="estado_proveedor" name="estado_proveedor"
+                    placeholder="Estado" value="">
+            </div>
+        </div>
+    </div>
+    <div class="card-footer text-center">
+        <button type="button" id="boton-agregar" class="btn btn-sm btn-primary" onclick="agregar()">Agregar</button>
+        <button type="button" id="boton-modificar" class="btn btn-sm btn-success" onclick="modificar()">Modificar</button>
+        <button type="button" id="boton-eliminar" class="btn btn-sm btn-danger" onclick="eliminar()">Eliminar</button>
+        <button type="button" class="btn btn-sm btn-warning" onclick="salir_formulario()">Salir</button>
+    </div>
+</div>
+
+<script src="frm/referenciales/proveedores/js/scripts.js"></script>

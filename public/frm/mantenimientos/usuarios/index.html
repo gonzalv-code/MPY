@@ -4,63 +4,124 @@
     </div>
     <div class="card-body">
         <div class="row">
-            <div class="col-md-10">
-                <div class="row">
-                    <div class="col-md-2">
-                        <label class="form-control-plaintext" for="id_usuario">Id</label>
-                    </div>
-                    <div class="col-md-2">
-                        <input type="text" class="form-control form-control-sm" id="id_usuario" name="id_usuario"
-                            placeholder="Id" value="0">
-                    </div>
-                    <div class="col-md-1">
-                        <button type="button" class="btn btn-sm btn-primary" onclick="cargar_busqueda('frm/mantenimientos/usuarios/buscar_usuarios.html')">
-                            <i class="fas fa-search"></i>
-                        </button>
-                    </div>
-                </div>
-
-                <div class="row">
-                    <div class="col-md-2">
-                        <label class="form-control-plaintext" for="nombre_producto">Nombre</label>
-                    </div>
-                    <div class="col-md-10">
-                        <input type="text" class="form-control form-control-sm" id="nombre_usuario"
-                            name="nombre_usuario" placeholder="Nombre" value="">
-                    </div>
-                </div>
-
-                <div class="row">
-                    <div class="col-md-2">
-                        <label class="form-control-plaintext" for="usuario_usuario">Usuario</label>
-                    </div>
-                    <div class="col-md-10">
-                        <input type="text" class="form-control form-control-sm text-right" id="usuario_usuario"
-                            name="usuario_usuario" placeholder="Precio" value="0">
-                    </div>
-                </div>
-
-                <div class="row">
-                    <div class="col-md-2">
-                        <label class="form-control-plaintext" for="precio_producto">Clave</label>
-                    </div>
-                    <div class="col-md-10">
-                        <input type="text" class="form-control form-control-sm text-right" id="precio_producto"
-                            name="usuario_usuario" placeholder="Precio" value="0">
-                    </div>
-                </div>
+            <div class="col-md-1">
+                <label class="form-control-plaintext" for="id_usuario">Id</label>
             </div>
-            <div class="col-md-2">
-                <img src="img/productos/0.jpg" alt="Imagen">
+            <div class="col-md-0">
+                <input type="text" class="form-control form-control-sm" id="id_usuario" name="id_usuario"
+                    onchange="buscar_id()" placeholder="Id" value="0">
+            </div>
+            <div class="col-md-1">
+                <button type="button" class="btn btn-sm btn-primary"
+                    onclick="cargar_busqueda('frm/mantenimientos/usuarios/buscar_usuarios.html')">
+                    <i class="fas fa-search"></i>
+                </button>
+            </div>
+            
+        </div>
+        <div class="row">
+            <div class="col-md-1">
+                <label class="form-control-plaintext" for="login_usuario">Login</label>
+            </div>
+            <div class="col-md-0">
+                <input type="text" class="form-control form-control-sm" id="login_usuario" name="login_usuario"
+                    placeholder="Login" value="">
             </div>
         </div>
-
+        <div class="row">
+            <div class="col-md-1">
+                <label class="form-control-plaintext" for="clave_usuario">Clave</label>
+            </div>
+            <div class="col-md-0">
+                <input type="text" class="form-control form-control-sm" id="clave_usuario" name="clave_usuario"
+                    placeholder="Clave" value="">
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-md-1">
+                <label class="form-control-plaintext" for="estado_usuario">Estado</label>
+            </div>
+            <div class="col-md-0">
+                <select class="form-control form-control-sm" id="estado_usuario" name="estado_usuario">
+                    <option value="1">A</option>
+                    <option value="2">I</option>
+                </select>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-md-2">
+                <label class="form-control-plaintext" for="id_perfil">Id</label>
+            </div>
+            <div class="col-md-2">
+                <input type="text" class="form-control form-control-sm" id="id_perfil" name="id_perfil"
+                    onchange="buscar_id()" placeholder="Id" value="0">
+            </div>
+            <div class="col-md-1">
+                <button type="button" class="btn btn-sm btn-primary"
+                    onclick="cargar_busqueda('frm/mantenimientos/usuarios/buscar_perfiles.html')">
+                    <i class="fas fa-search"></i>
+                </button>
+            </div>
+            <div class="col-md-2">
+                <label class="form-control-plaintext" for="nombre_perfil">Nombre Perfil</label>
+            </div>
+            <div class="col-md-2">
+                <input type="text" class="form-control form-control-sm" id="nombre_perfil" name="nombre_perfil"
+                    placeholder="Nombre de Perfil" value="">
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-md-2">
+                <label class="form-control-plaintext" for="id_funcionario">Id</label>
+            </div>
+            <div class="col-md-2">
+                <input type="text" class="form-control form-control-sm" id="id_funcionario" name="id_funcionario"
+                    onchange="buscar_id()" placeholder="Id" value="0">
+            </div>
+            <div class="col-md-1">
+                <button type="button" class="btn btn-sm btn-primary"
+                    onclick="cargar_busqueda('frm/mantenimientos/usuarios/buscar_funcionarios.html')">
+                    <i class="fas fa-search"></i>
+                </button>
+            </div>
+            <div class="col-md-2">
+                <label class="form-control-plaintext" for="nombre_funcionario">Nombre funcionario</label>
+            </div>
+            <div class="col-md-2">
+                <input type="text" class="form-control form-control-sm" id="nombre_funcionario"
+                    name="nombre_funcionario" placeholder="Nombre de funcionario" value="">
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-md-2">
+                <label class="form-control-plaintext" for="id_sucursal">Id</label>
+            </div>
+            <div class="col-md-2">
+                <input type="text" class="form-control form-control-sm" id="id_sucursal" name="id_sucursal"
+                    onchange="buscar_id()" placeholder="Id" value="0">
+            </div>
+            <div class="col-md-1">
+                <button type="button" class="btn btn-sm btn-primary"
+                    onclick="cargar_busqueda('frm/mantenimientos/usuarios/buscar_sucursales.html')">
+                    <i class="fas fa-search"></i>
+                </button>
+            </div>
+            <div class="col-md-2">
+                <label class="form-control-plaintext" for="nombre_sucursal">Sucursal</label>
+            </div>
+            <div class="col-md-2">
+                <input type="text" class="form-control form-control-sm" id="nombre_sucursal" name="nombre_sucursal"
+                    placeholder="Sucursal" value="">
+            </div>
+        </div>
     </div>
     <div class="card-footer text-center">
-        <button type="button" id="boton-agregar" class="btn btn-sm btn-primary">Agregar</button>
-        <button type="button" id="boton-modificar" class="btn btn-sm btn-success">Modificar</button>
-        <button type="button" id="boton-eliminar" class="btn btn-sm btn-danger">Eliminar</button>
+        <button type="button" id="boton-agregar" class="btn btn-sm btn-primary" onclick="agregar()">Agregar</button>
+        <button type="button" id="boton-modificar" class="btn btn-sm btn-success"
+            onclick="modificar()">Modificar</button>
+        <button type="button" id="boton-eliminar" class="btn btn-sm btn-danger" onclick="eliminar()">Eliminar</button>
         <button type="button" class="btn btn-sm btn-warning" onclick="salir_formulario()">Salir</button>
     </div>
 </div>
-<script src="frm/mantenimientos/usuarios/js/scripts.js"></script>
+
+<script src="frm/mantenimientos/perfiles/js/scripts.js"></script>

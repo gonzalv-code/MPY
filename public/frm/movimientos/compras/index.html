@@ -1,0 +1,248 @@
+<div class="card">
+    <div class="card-header text-center bg-primary text-white">
+        Compras
+    </div>
+    <div class="card-body">
+        <div class="row">
+            <div class="col-md-2">
+                <label class="form-control-plaintext" for="id_compra_cabecera">Id</label>
+            </div>
+            <div class="col-md-2">
+                <input type="text" class="form-control form-control-sm" id="id_compra_cabecera"
+                    name="id_compra_cabecera" onchange="buscar_id()" placeholder="Id" value="0">
+            </div>
+            <div class="col-md-1">
+                <button type="button" class="btn btn-sm btn-primary"
+                    onclick="cargar_busqueda('frm/movimientos/compras/buscar_compras.html')">
+                    <i class="fas fa-search"></i>
+                </button>
+            </div>
+            <div class="col-md-2">
+                <label class="form-control-plaintext" for="emision_compra_cabecera">Emisión</label>
+            </div>
+            <div class="col-md-2">
+                <input type="date" class="form-control form-control-sm" id="emision_compra_cabecera"
+                    name="emision_compra_cabecera">
+            </div>
+            <div class="col-md-1">
+                <label class="form-control-plaintext" for="condicion_compra_cabecera">Condición</label>
+            </div>
+            <div class="col-md-2">
+                <select class="form-control form-control-sm" id="condicion_compra_cabecera"
+                    name="condicion_compra_cabecera">
+                    <option value="1">Contado</option>
+                    <option value="2">Credito</option>
+                </select>
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="col-md-2">
+                <label class="form-control-plaintext" for="fiscal_compra_cabecera">Nº Fiscal</label>
+            </div>
+            <div class="col-md-2">
+                <input type="text" class="form-control form-control-sm" id="fiscal_compra_cabecera"
+                    name="fiscal_compra_cabecera" placeholder="001-001-1234567" value="">
+            </div>
+            <div class="col-md-1">
+                <label class="form-control-plaintext" for="cuotas_compra_cabecera">Cuotas</label>
+            </div>
+            <div class="col-md-2">
+                <select class="form-control form-control-sm" id="cuotas_compra_cabecera" name="cuotas_compra_cabecera">
+                    <option value="1">1</option>
+                    <option value="2">2</option>
+                </select>
+            </div>
+            <div class="col-md-2">
+                <label class="form-control-plaintext" for="intervalo_compra_cabecera">Intervalo</label>
+            </div>
+            <div class="col-md-2">
+                <input type="text" class="form-control form-control-sm" id="intervalo_compra_cabecera"
+                    name="intervalo_compra_cabecera" placeholder="0" value="">
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="col-md-2">
+                <label class="form-control-plaintext" for="id_usuario">Usuario</label>
+            </div>
+            <div class="col-md-2">
+                <input type="text" class="form-control form-control-sm" id="id_usuario" name="id_usuario"
+                    onchange="buscar_id_usuario()" placeholder="Id usuario" value="0">
+            </div>
+            <div class="col-md-1">
+                <button type="button" class="btn btn-sm btn-primary"
+                    onclick="cargar_busqueda('frm/movimientos/compras/buscar_usuarios.html')">
+                    <i class="fas fa-search"></i>
+                </button>
+            </div>
+            <div class="col-md-7">
+                <input type="text" class="form-control form-control-sm" id="login_usuario" name="login_usuario"
+                    placeholder="login usuario" readonly>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-md-2">
+                <label class="form-control-plaintext" for="id_sucursal">Sucursal</label>
+            </div>
+            <div class="col-md-2">
+                <input type="text" class="form-control form-control-sm" id="id_sucursal" name="id_sucursal"
+                    onchange="buscar_id_sucursal()" placeholder="Id sucursal" value="0">
+            </div>
+            <div class="col-md-1">
+                <button type="button" class="btn btn-sm btn-primary"
+                    onclick="cargar_busqueda('frm/movimientos/compras/buscar_sucursales.html')">
+                    <i class="fas fa-search"></i>
+                </button>
+            </div>
+            <div class="col-md-7">
+                <input type="text" class="form-control form-control-sm" id="nombre_sucursal" name="nombre_sucursal"
+                    placeholder="nombre sucursal" readonly>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-md-2">
+                <label class="form-control-plaintext" for="id_proveedor">Proveedor</label>
+            </div>
+            <div class="col-md-2">
+                <input type="text" class="form-control form-control-sm" id="id_proveedor" name="id_proveedor"
+                    onchange="buscar_id_proveedor()" placeholder="Id proveedor" value="0">
+            </div>
+            <div class="col-md-1">
+                <button type="button" class="btn btn-sm btn-primary"
+                    onclick="cargar_busqueda('frm/movimientos/compras/buscar_proveedores.html')">
+                    <i class="fas fa-search"></i>
+                </button>
+            </div>
+            <div class="col-md-7">
+                <input type="text" class="form-control form-control-sm" id="nombre_proveedor" name="nombre_proveedor"
+                    placeholder="nombre proveedor" readonly>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-md-2">
+                <label class="form-control-plaintext" for="registro_compra_cabecera">registro</label>
+            </div>
+            <div class="col-md-2">
+                <input type="datetime-local" class="form-control form-control-sm" id="registro_compra_cabecera" name="registro_compra_cabecera">
+            </div>
+        </div>
+    </div>
+<!-- AQUI COMPRA DETALLE-->
+    <div class="alert alert-success" role="alert">
+        <form id="form-detalle">
+            <div class="row">
+                <div class="col-md-2">
+                    <label class="form-control-plaintext" for="id_venta_detalle">Id</label>
+                </div>
+                <div class="col-md-2">
+                    <input type="text" class="form-control form-control-sm" id="id_venta_detalle"
+                        name="id_venta_detalle""
+                        placeholder=" Id Venta Detalle" value="0" readonly>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-md-2">
+                    <label class="form-control-plaintext" for="id_producto">Producto</label>
+                </div>
+                <div class="col-md-2">
+                    <input type="text" class="form-control form-control-sm" id="id_producto" name="id_producto""
+                     onchange=" buscar_id_producto()" placeholder="Id Producto" value="0">
+                </div>
+                <div class="col-md-1">
+                    <button type="button" class="btn btn-sm btn-primary"
+                        onclick="cargar_busqueda('frm/movimientos/ventas/buscar_productos.html')">
+                        <i class="fas fa-search"></i>
+                    </button>
+                </div>
+                <div class="col-md-5">
+                    <input type="text" class="form-control form-control-sm" id="nombre_producto" name="nombre_producto""
+                        placeholder=" Nombre del Producto" value="" readonly>
+                </div>
+                <div class="col-md-2">
+                    <select id="id_iva" name="id_iva" class="form-control form-control-sm">
+                        <option value="1">Exento</option>
+                        <option value="2">Gravado 5%</option>
+                        <option value="3">Gravado 10%</option>
+                    </select>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-md-2">
+                    <label class="form-control-plaintext" for="cantidad_venta_detalle">Cantidad</label>
+                </div>
+                <div class="col-md-2">
+                    <input type="text" class="form-control form-control-sm text-right" id="cantidad_venta_detalle"
+                        name="cantidad_venta_detalle""
+                        onchange=" calcular_total_linea()" placeholder="Cantidad" value="0">
+                </div>
+                <div class="col-md-2">
+                    <label class="form-control-plaintext" for="precio_venta_detalle">Precio</label>
+                </div>
+                <div class="col-md-2">
+                    <input type="text" class="form-control form-control-sm text-right" id="precio_venta_detalle"
+                        name="precio_venta_detalle""
+                        placeholder=" Precio" value="0" readonly>
+                </div>
+                <div class="col-md-2">
+                    <label class="form-control-plaintext" for="total_venta_detalle">Total</label>
+                </div>
+                <div class="col-md-2">
+                    <input type="text" class="form-control form-control-sm text-right" id="total_venta_detalle"
+                        name="total_venta_detalle""
+                        placeholder=" Total" value="0" readonly>
+                </div>
+            </div>
+        </form>
+        <div class="text-center">
+            <button type="button" id="boton-guardar" class="btn btn-sm btn-primary" onclick="guardar_detalle()">
+                <i class="fas fa-plus"></i> Guardar
+            </button>
+            <button type="button" class="btn btn-sm btn-warning" onclick="salir_formulario()">
+                <i class="fas fa-sign-out-alt"></i> Cancelar
+            </button>
+        </div>
+    </div>
+
+    <table class="table table-hover table-bordered table-striped">
+        <thead>
+            <tr>
+                <th>Id</th>
+                <th>Producto</th>
+                <th>Nombre</th>
+                <th>Iva</th>
+                <th>Nombre</th>
+                <th class="text-right">Cantidad</th>
+                <th class="text-right">Precio</th>
+                <th class="text-right">Total</th>
+                <th class="text-center" style="width: 100px">
+                    <button type="button" onclick="agregar_detalle()" class="btn btn-sm btn-primary">
+                        <i class="fas fa-plus"></i>
+                    </button>
+                </th>
+            </tr>
+        </thead>
+        <tbody id="tbody_datos_detalle">
+
+        </tbody>
+        <tfoot>
+            <tr>
+                <td colspan="7">TOTALES</td>
+                <td class="text-right" id="total_detalles">0</td>
+                <td class="text-center">
+
+                </td>
+            </tr>
+        </tfoot>
+    </table>
+    <div class="card-footer text-center">
+        <button type="button" id="boton-agregar" class="btn btn-sm btn-primary" onclick="agregar()">Agregar</button>
+        <button type="button" id="boton-modificar" class="btn btn-sm btn-success"
+            onclick="modificar()">Modificar</button>
+        <button type="button" id="boton-eliminar" class="btn btn-sm btn-danger" onclick="eliminar()">Eliminar</button>
+        <button type="button" id="boton-eliminar" class="btn btn-sm btn-danger" onclick="imprimir()">Imprimir</button>
+        <button type="button" class="btn btn-sm btn-warning" onclick="salir_formulario()">Salir</button>
+    </div>
+</div>
+
+<script src="frm/movimientos/ventas/js/scripts.js"></script>
