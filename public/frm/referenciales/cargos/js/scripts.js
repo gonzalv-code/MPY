@@ -1,33 +1,38 @@
 $('#id_cargo').select();
 habilitar_agregar();
+siguiente_campo('#id_cargo', '#nombre_cargo', false);
+siguiente_campo('#nombre_cargo', '#boton-agregar', true);
+
 
 function buscar_id() {
-    var id_cargo = $('#id_cargo').val();
-    var url = "/api/cargos/" + id_cargo;
+    if (validar_formulario_id_cargo()) {
+        var id_cargo = $('#id_cargo').val();
+        var url = "/api/cargos/" + id_cargo;
 
-    fetch(url, {
-        method: "GET",
-        headers: {
-            "Content-Type": "application/json"
-        }
-    })
-        .then(function (response) {
-            return response.json();
-        })
-        .then(function (myJson) {
-            console.log(myJson);
-            if (myJson.datos.length > 0) {
-                $('#id_cargo').val(myJson.datos[0].id_cargo);
-                $('#nombre_cargo').val(myJson.datos[0].nombre_cargo);
-                $('#nombre_cargo').select();
-                deshabilitar_agregar();
-            } else {
-                $('#id_cargo').val(0);
-                $('#nombre_cargo').val("");
-                $('#nombre_cargo').select();
-                habilitar_agregar();
+        fetch(url, {
+            method: "GET",
+            headers: {
+                "Content-Type": "application/json"
             }
-        });
+        })
+            .then(function (response) {
+                return response.json();
+            })
+            .then(function (myJson) {
+                console.log(myJson);
+                if (myJson.datos.length > 0) {
+                    $('#id_cargo').val(myJson.datos[0].id_cargo);
+                    $('#nombre_cargo').val(myJson.datos[0].nombre_cargo);
+                    $('#nombre_cargo').select();
+                    deshabilitar_agregar();
+                } else {
+                    $('#id_cargo').val(0);
+                    $('#nombre_cargo').val("");
+                    $('#nombre_cargo').select();
+                    habilitar_agregar();
+                }
+            });
+    }
 }
 
 function buscar_nombre() {
@@ -71,64 +76,127 @@ function seleccionar_cargo($this) {
 }
 
 function agregar() {
-    var nombre_cargo = $('#nombre_cargo').val();
+    if (validar_formulario()) {
+        var nombre_cargo = $('#nombre_cargo').val();
 
-    var url = "/api/cargos";
-    var data = { nombre_cargo: nombre_cargo };
+        var url = "/api/cargos";
+        var data = { nombre_cargo: nombre_cargo };
 
-    fetch(url, {
-        method: "POST",
-        body: JSON.stringify(data),
-        headers: {
-            "Content-Type": "application/json"
-        }
-    })
-        .then(function (response) {
-            return response.json();
+        fetch(url, {
+            method: "POST",
+            body: JSON.stringify(data),
+            headers: {
+                "Content-Type": "application/json"
+            }
         })
-        .then(function (myJson) {
-            console.log(myJson);
+            .then(function (response) {
+                return response.json();
+            })
+            .then(function (myJson) {
+                console.log(myJson);
 
-        });
+            });
+    }
+
 }
 
 function modificar() {
-    var id_cargo = $('#id_cargo').val();
-    var nombre_cargo = $('#nombre_cargo').val();
+    if (validar_formulario()) {
+        var id_cargo = $('#id_cargo').val();
+        var nombre_cargo = $('#nombre_cargo').val();
 
-    var url = "/api/cargos/" + id_cargo;
-    var data = { nombre_cargo: nombre_cargo };
+        var url = "/api/cargos/" + id_cargo;
+        var data = { nombre_cargo: nombre_cargo };
 
-    fetch(url, {
-        method: "PUT",
-        body: JSON.stringify(data),
-        headers: {
-            "Content-Type": "application/json"
-        }
-    })
-        .then(function (response) {
-            return response.json();
+        fetch(url, {
+            method: "PUT",
+            body: JSON.stringify(data),
+            headers: {
+                "Content-Type": "application/json"
+            }
         })
-        .then(function (myJson) {
-            console.log(myJson);
-        });
+            .then(function (response) {
+                return response.json();
+            })
+            .then(function (myJson) {
+                console.log(myJson);
+                if (myJson.modificado) {
+                    limpiar_campos();
+                } else {
+                    mensaje("ERROR: Registro no modificado","Aceptar","focus_nombre_cargo()");
+                }
+            })
+            .catch(function(error) {
+                mensaje(`ERROR SERVIDOR: ${error.message}` ,"Aceptar","focus_nombre_cargo()");
+              });
+    }
+
 }
 
 function eliminar() {
-    var id_cargo = $('#id_cargo').val();
+    if (validar_formulario()) {
+        var id_cargo = $('#id_cargo').val();
 
-    var url = "/api/cargos/" + id_cargo;
+        var url = "/api/cargos/" + id_cargo;
 
-    fetch(url, {
-        method: "DELETE",
-        headers: {
-            "Content-Type": "application/json"
-        }
-    })
-        .then(function (response) {
-            return response.json();
+        fetch(url, {
+            method: "DELETE",
+            headers: {
+                "Content-Type": "application/json"
+            }
         })
-        .then(function (myJson) {
-            console.log(myJson);
-        });
+            .then(function (response) {
+                return response.json();
+            })
+            .then(function (myJson) {
+                console.log(myJson);
+            });
+    }
+}
+
+function validar_formulario() {
+    var ok = true;
+    var id_cargo = $('#id_cargo').val();
+    var nombre_cargo = $('#nombre_cargo').val();
+    //var expreg = /^\d+$/;
+    //var expreg = new RegExp("^\\d+$");
+    var expreg = new RegExp(/^\d+$/);
+    console.log(expreg.test(id_cargo));
+    if (!expreg.test(id_cargo)) {
+        mensaje("Id de cargo debe ser sólo números", "Aceptar", "focus_id_cargo()")
+        ok = false;
+    } else if (nombre_cargo.trim() === '') {
+        mensaje("Nombre no puede estar vacio", "Aceptar", "focus_nombre_cargo()")
+        ok = false;
+    }
+    return ok;
+}
+
+function validar_formulario_id_cargo() {
+    var ok = true;
+    var id_cargo = $('#id_cargo').val();
+    var nombre_cargo = $('#nombre_cargo').val();
+    //var expreg = /^\d+$/;
+    //var expreg = new RegExp("^\\d+$");
+    var expreg = new RegExp(/^\d+$/);
+    console.log(expreg.test(id_cargo));
+    if (!expreg.test(id_cargo)) {
+        mensaje("Id de cargo debe ser sólo números", "Aceptar", "focus_id_cargo()")
+        ok = false;
+    }
+    return ok;
+}
+
+function focus_id_cargo() {
+    $('#id_cargo').select();
+}
+
+function focus_nombre_cargo() {
+    $('#nombre_cargo').select();
+}
+
+function limpiar_campos(){
+    $('#id_cargo').val(0);
+    $('#nombre_cargo').val("");
+    $('#id_cargo').select();
 }

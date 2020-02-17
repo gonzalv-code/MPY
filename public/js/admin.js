@@ -1,15 +1,24 @@
+siguiente_campo('#login_usuario','#clave_usuario',false);
+siguiente_campo('#clave_usuario','#boton-ingresar',false);
+
 function ingresar() {
   var login = $('#login_usuario').val();
   var clave = $('#clave_usuario').val();
   if (login.trim() === '') {
-    alert('Usuario vacio');
-    $('#login_usuario').select();
+    mensaje('Usuario vacio','Aceptar','focus_login()');
   } else if (clave.trim() === '') {
-    alert('Contraseña vacia');
-    $('#clave_usuario').select();
+    mensaje('Contraseña vacia','Aceptar','focus_clave()');
   } else {
     ingresar_ajax(login, clave);
   }
+}
+
+function focus_login(){
+  $('#login_usuario').select();
+}
+
+function focus_clave(){
+  $('#clave_usuario').select();
 }
 
 function ingresar_ajax(login, clave) {
@@ -31,8 +40,7 @@ function ingresar_ajax(login, clave) {
       if (myJson.datos.length > 0) {
         location.href = "./menu";
       } else {
-        alert('Credencial incorrecta');
-        $('#usuario_usuario').select();
+        mensaje('Credencial incorrecta','Aceptar','focus_login()');
       }
     });
 }

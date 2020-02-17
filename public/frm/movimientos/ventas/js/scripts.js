@@ -263,7 +263,7 @@ function seleccionar_cliente($this) {
     salir_busqueda('#id_cliente');
 }
 
-// Detalle
+// Detalles
 
 function buscar_id_venta_cabecera_ventas_detalles(){
     var id_venta_cabecera = $('#id_venta_cabecera').val();
@@ -286,8 +286,8 @@ function buscar_id_venta_cabecera_ventas_detalles(){
                 total_detalles += detalle.cantidad_venta_detalle*detalle.precio_venta_detalle;
                 filas += "<tr>";
                 filas += " <td>" + detalle.id_venta_detalle + "</td>";
-                filas += " <td>" + detalle.id_producto + "</td>";
-                filas += " <td>" + detalle.nombre_producto + "</td>";
+                filas += " <td>" + detalle.id_item + "</td>";
+                filas += " <td>" + detalle.nombre_item + "</td>";
                 filas += " <td>" + detalle.id_iva + "</td>";
                 filas += " <td>" + detalle.nombre_iva + "</td>";
                 filas += " <td class='text-right'>" + detalle.cantidad_venta_detalle + "</td>";
@@ -316,33 +316,33 @@ function agregar_detalle(){
 
 function limpiar_detalle(){
     $('#id_venta_detalle').val(0);
-    $('#id_producto').val(0);
-    $('#nombre_producto').val("");
+    $('#id_item').val(0);
+    $('#nombre_item').val("");
     $('#id_iva').val("1");
     $('#cantidad_venta_detalle').val(0);
-    $('#precio_venta_detalle').val(0);
+    $('#tipo_item').val(0);
     $('#total_venta_detalle').val(0);
-    $('#id_producto').select();
+    $('#id_item').select();
 }
 
 function modificar_detalle($this){
     operacion = 'modificar';
     var id_venta_detalle = $this.parent().parent().find('td').eq(0).text();    
-    var id_producto = $this.parent().parent().find('td').eq(1).text();    
-    var nombre_producto = $this.parent().parent().find('td').eq(2).text();    
+    var id_item = $this.parent().parent().find('td').eq(1).text();    
+    var nombre_item = $this.parent().parent().find('td').eq(2).text();    
     var id_iva = $this.parent().parent().find('td').eq(3).text();
     var cantidad_venta_detalle = $this.parent().parent().find('td').eq(5).text();
     var precio_venta_detalle = $this.parent().parent().find('td').eq(6).text();
     var total_venta_detalle = $this.parent().parent().find('td').eq(7).text();
 
     $('#id_venta_detalle').val(id_venta_detalle);
-    $('#id_producto').val(id_producto);
-    $('#nombre_producto').val(nombre_producto);
+    $('#id_item').val(id_item);
+    $('#nombre_item').val(nombre_item);
     $('#id_iva').val(id_iva);
     $('#cantidad_venta_detalle').val(cantidad_venta_detalle);
     $('#precio_venta_detalle').val(precio_venta_detalle);
     $('#total_venta_detalle').val(total_venta_detalle);
-    $('#id_producto').select();
+    $('#id_item').select();
 }
 
 function eliminar_detalle($this){
@@ -383,19 +383,21 @@ function guardar_detalle(){
 function guardar_detalle_agregar(){
 
     var id_venta_cabecera = $('#id_venta_cabecera').val();
-    var id_producto = $('#id_producto').val();
+    var id_item = $('#id_item').val();
     var id_iva = $('#id_iva').val();
-    var cantidad_venta_detalle = $('#cantidad_venta_detalle').val();
     var precio_venta_detalle = $('#precio_venta_detalle').val();
+    var cantidad_venta_detalle = $('#cantidad_venta_detalle').val();
+    
 
     var url = "/api/ventas_detalles";
     var data = {
         id_venta_detalle: id_venta_detalle,
         id_venta_cabecera: id_venta_cabecera,
-        id_producto: id_producto,
+        id_item: id_item,
         id_iva: id_iva,
-        cantidad_venta_detalle: cantidad_venta_detalle,
-        precio_venta_detalle: precio_venta_detalle
+        precio_venta_detalle: precio_venta_detalle,
+        cantidad_venta_detalle: cantidad_venta_detalle
+        
     };
 
     fetch(url, {
@@ -423,19 +425,21 @@ function guardar_detalle_modificar(){
     var id_venta_detalle = $('#id_venta_detalle').val();
 
     var id_venta_cabecera = $('#id_venta_cabecera').val();
-    var id_producto = $('#id_producto').val();
+    var id_item = $('#id_item').val();
     var id_iva = $('#id_iva').val();
-    var cantidad_venta_detalle = $('#cantidad_venta_detalle').val();
     var precio_venta_detalle = $('#precio_venta_detalle').val();
+    var cantidad_venta_detalle = $('#cantidad_venta_detalle').val();
+    
 
     var url = "/api/ventas_detalles/" + id_venta_detalle;
     var data = {
         id_venta_detalle: id_venta_detalle,
         id_venta_cabecera: id_venta_cabecera,
-        id_producto: id_producto,
+        id_item: id_item,
         id_iva: id_iva,
-        cantidad_venta_detalle: cantidad_venta_detalle,
-        precio_venta_detalle: precio_venta_detalle
+        precio_venta_detalle: precio_venta_detalle,
+        cantidad_venta_detalle: cantidad_venta_detalle
+        
     };
 
     fetch(url, {
@@ -467,10 +471,10 @@ function calcular_total_linea(){
     $('#total_venta_detalle').val(total);
 }
 
-// Producto -----------------------------------------------------------------------------------------------------------------------
-function buscar_id_producto() {
-    var id_producto = $('#id_producto').val();
-    var url = "/api/productos/" + id_producto;
+// Item -----------------------------------------------------------------------------------------------------------------------
+function buscar_id_item() {
+    var id_item = $('#id_item').val();
+    var url = "/api/items/" + id_item;
 
     fetch(url, {
         method: "GET",
@@ -484,22 +488,24 @@ function buscar_id_producto() {
         .then(function (myJson) {
             console.log(myJson);
             if (myJson.datos.length > 0) {
-                $('#id_producto').val(myJson.datos[0].id_producto);
-                $('#nombre_producto').val(myJson.datos[0].nombre_producto);
+                $('#id_item').val(myJson.datos[0].id_item);
+                $('#nombre_item').val(myJson.datos[0].nombre_item);
                 $('#id_iva').val(myJson.datos[0].id_iva);
-                $('#precio_venta_detalle').val(myJson.datos[0].precio_producto);
+                $('#tipo_item').val(myJson.datos[0].tipo_item);
+                $('#precio_venta_detalle').val(myJson.datos[0].precio_item);
             } else {
-                $('#id_producto').val(0);
-                $('#nombre_producto').val("");
+                $('#id_item').val(0);
+                $('#nombre_item').val("");
                 $('#id_iva').val("1");
+                $('#tipo_item').val("");
                 $('#precio_venta_detalle').val(0);
             }
         });
 }
 
-function buscar_nombre_producto() {
+function buscar_nombre_item() {
 
-    var url = "/api/productos";
+    var url = "/api/items";
 
     fetch(url, {
         method: "GET",
@@ -515,13 +521,14 @@ function buscar_nombre_producto() {
             $('#tbody_datos').html('');
             if (myJson.datos.length > 0) {
                 var filas = "";
-                myJson.datos.forEach(producto => {
-                    filas += "<tr onclick='seleccionar_producto($(this))'>";
-                    filas += " <td>" + producto.id_producto + "</td>";
-                    filas += " <td>" + producto.nombre_producto + "</td>";
-                    filas += " <td>" + producto.precio_producto + "</td>";
-                    filas += " <td>" + producto.id_iva + "</td>";
-                    filas += " <td>" + producto.nombre_iva + "</td>";
+                myJson.datos.forEach(item => {
+                    filas += "<tr onclick='seleccionar_item($(this))'>";
+                    filas += " <td>" + item.id_item + "</td>";
+                    filas += " <td>" + item.nombre_item + "</td>";
+                    filas += " <td>" + item.precio_item + "</td>";
+                    filas += " <td>" + item.id_iva + "</td>";
+                    filas += " <td>" + item.tipo_item + "</td>";
+                    
                     filas += "</tr>";
                 });
             } else {
@@ -531,15 +538,19 @@ function buscar_nombre_producto() {
         });
 }
 
-function seleccionar_producto($this) {
-    var id_producto = $this.find('td').eq(0).text();
-    var nombre_producto = $this.find('td').eq(1).text();
-    var precio_venta_detalle = $this.find('td').eq(2).text();
+function seleccionar_item($this) {
+    var id_item = $this.find('td').eq(0).text();
+    var nombre_item = $this.find('td').eq(1).text();
+    var precio_item = $this.find('td').eq(2).text();
     var id_iva = $this.find('td').eq(3).text();
-    $('#id_producto').val(id_producto);
-    $('#nombre_producto').val(nombre_producto);
-    $('#precio_venta_detalle').val(precio_venta_detalle);
+    var tipo_item = $this.find('td').eq(4).text();
+    
+    $('#id_item').val(id_item);
+    $('#nombre_item').val(nombre_item);
+    $('#precio_venta_detalle').val(precio_item);
     $('#id_iva').val(id_iva);
+    $('#tipo_item').val(tipo_item);
+    
     salir_busqueda('#cantidad_venta_detalle');
 }
 

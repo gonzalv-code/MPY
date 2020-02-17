@@ -74,16 +74,16 @@ return function (App $app) {
         $datos = json_decode($request->getBody());
 
         $id_venta_cabecera =  $datos->id_venta_cabecera;
-        $id_producto =  $datos->id_producto;
+        $id_item =  $datos->id_item;
         $cantidad_venta_detalle =  $datos->cantidad_venta_detalle;
         $precio_venta_detalle =  $datos->precio_venta_detalle;
         $id_iva =  $datos->id_iva;
         $conexion = new Conexion();
         $pgsql  =  $conexion->conectar();
-        $sql = "INSERT INTO ventas_detalles(id_venta_cabecera, id_producto, cantidad_venta_detalle, precio_venta_detalle, id_iva) VALUES(:id_venta_cabecera, :id_producto, :cantidad_venta_detalle, :precio_venta_detalle, :id_iva)";
+        $sql = "INSERT INTO ventas_detalles(id_venta_cabecera, id_item, cantidad_venta_detalle, precio_venta_detalle, id_iva) VALUES(:id_venta_cabecera, :id_item, :cantidad_venta_detalle, :precio_venta_detalle, :id_iva)";
         $stmt = $pgsql->prepare($sql);
         $stmt->bindParam(':id_venta_cabecera', $id_venta_cabecera);
-        $stmt->bindParam(':id_producto', $id_producto);
+        $stmt->bindParam(':id_item', $id_item);
         $stmt->bindParam(':cantidad_venta_detalle', $cantidad_venta_detalle);
         $stmt->bindParam(':precio_venta_detalle', $precio_venta_detalle);
         $stmt->bindParam(':id_iva', $id_iva);
@@ -109,7 +109,7 @@ return function (App $app) {
 
         $datos = json_decode($request->getBody());
         $id_venta_cabecera =  $datos->id_venta_cabecera;
-        $id_producto =  $datos->id_producto;
+        $id_item =  $datos->id_item;
         $cantidad_venta_detalle =  $datos->cantidad_venta_detalle;
         $precio_venta_detalle =  $datos->precio_venta_detalle;
         $id_iva =  $datos->id_iva;
@@ -117,11 +117,11 @@ return function (App $app) {
         $conexion = new Conexion();
         $pgsql  =  $conexion->conectar();
         $sql = "UPDATE ventas_detalles SET id_venta_detalle = :id_venta_detalle, ".
-               "id_venta_cabecera = :id_venta_cabecera, id_producto = :id_producto, cantidad_venta_detalle = :cantidad_venta_detalle, precio_venta_detalle = :precio_venta_detalle, id_iva = :id_iva WHERE id_venta_detalle = :id_venta_detalle";
+               "id_venta_cabecera = :id_venta_cabecera, id_item = :id_item, cantidad_venta_detalle = :cantidad_venta_detalle, precio_venta_detalle = :precio_venta_detalle, id_iva = :id_iva WHERE id_venta_detalle = :id_venta_detalle";
         $stmt = $pgsql->prepare($sql);
         $stmt->bindParam(':id_venta_detalle', $id_venta_detalle);
         $stmt->bindParam(':id_venta_cabecera', $id_venta_cabecera);
-        $stmt->bindParam(':id_producto', $id_producto);
+        $stmt->bindParam(':id_item', $id_item);
         $stmt->bindParam(':cantidad_venta_detalle', $cantidad_venta_detalle);
         $stmt->bindParam(':precio_venta_detalle', $precio_venta_detalle);
         $stmt->bindParam(':id_iva', $id_iva);
@@ -175,7 +175,7 @@ return function (App $app) {
         $pgsql  =  $conexion->conectar();
 
         $sql = "SELECT * FROM ventas_detalles vd ".
-               "LEFT JOIN productos p ON vd.id_producto = p.id_producto ".
+               "LEFT JOIN items p ON vd.id_item = p.id_item ".
                "LEFT JOIN ivas i ON vd.id_iva = i.id_iva ".
                "WHERE id_venta_cabecera = :id_venta_cabecera";
         $stmt = $pgsql->prepare($sql); 

@@ -5,7 +5,7 @@
     <div class="card-body">
         <div class="row">
             <div class="col-md-2">
-                <label class="form-control-plaintext" for="id_producto">Id</label>
+                <label class="form-control-plaintext" for="id_item">Id</label>
             </div>
             <div class="col-md-2">
                 <input type="text" class="form-control form-control-sm" id="id_venta_cabecera" name="id_venta_cabecera" onchange="buscar_id()"
@@ -76,21 +76,21 @@
             </div>
             <div class="row">
                 <div class="col-md-2">
-                    <label class="form-control-plaintext" for="id_producto">Producto</label>
+                    <label class="form-control-plaintext" for="id_item">Item</label>
                 </div>
                 <div class="col-md-2">
-                    <input type="text" class="form-control form-control-sm" id="id_producto" name="id_producto""
-                     onchange="buscar_id_producto()"
-                     placeholder="Id Producto" value="0">
+                    <input type="text" class="form-control form-control-sm" id="id_item" name="id_item""
+                     onchange="buscar_id_item()"
+                     placeholder="Id item" value="0">
                 </div>
                 <div class="col-md-1">
-                    <button type="button" class="btn btn-sm btn-primary" onclick="cargar_busqueda('frm/movimientos/ventas/buscar_productos.html')">
+                    <button type="button" class="btn btn-sm btn-primary" onclick="cargar_busqueda('frm/movimientos/ventas/buscar_items.html')">
                         <i class="fas fa-search"></i>
                     </button>
                 </div>
-                <div class="col-md-5">
-                    <input type="text" class="form-control form-control-sm" id="nombre_producto" name="nombre_producto""
-                        placeholder="Nombre del Producto" value="" readonly>
+                <div class="col-md-3">
+                    <input type="text" class="form-control form-control-sm" id="nombre_item" name="nombre_item""
+                        placeholder="Nombre del Item" value="" readonly>
                 </div>
                 <div class="col-md-2">
                     <select id="id_iva" name="id_iva" class="form-control form-control-sm">
@@ -98,6 +98,10 @@
                         <option value="2">Gravado 5%</option>
                         <option value="3">Gravado 10%</option>
                     </select>
+                </div>
+                <div class="col-md-2">
+                    <input type="text" class="form-control form-control-sm" id="tipo_item" name="tipo_item"
+                        placeholder="Tipo Item" readonly>
                 </div>
             </div>
             <div class="row">
@@ -140,7 +144,7 @@
         <thead>
             <tr>
                 <th>Id</th>
-                <th>Producto</th>
+                <th>Item</th>
                 <th>Nombre</th>
                 <th>Iva</th>
                 <th>Nombre</th>
