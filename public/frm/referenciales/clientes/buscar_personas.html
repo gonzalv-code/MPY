@@ -1,18 +1,13 @@
 <div class="card">
     <div class="card-header text-center bg-primary text-white">
-        Buscar Usuarios
+        Buscar Persona
     </div>
     <div class="card-body">
         <table class="table table-hover table-bordered table-striped">
             <thead>
                 <tr>
-                    <th>ID Usuario</th>
-                    <th>login</th>
-                    <th>ID Perfil</th>
-                    <th>clave</th>
-                    <th>estado</th>
-                    <th>ID Funcionario</th>
-                    <th>ID Sucursal</th>
+                    <th>ID Persona</th>
+                    <th>Nombre</th>
                 </tr>
             </thead>
             <tbody id="tbody_datos">
@@ -21,10 +16,10 @@
         </table>
     </div>
     <div class="card-footer text-center">
-        <button type="button" class="btn btn-sm btn-warning" onclick="salir_busqueda('#id_usuario')">Salir</button>
+        <button type="button" class="btn btn-sm btn-warning" onclick="salir_busqueda('#nombre_persona')">Salir</button>
     </div>
 </div>
 
 <script>
-    buscar_usuario();
+    buscar_personas();
 </script>

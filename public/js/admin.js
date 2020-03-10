@@ -37,7 +37,8 @@ function ingresar_ajax(login, clave) {
     })
     .then(function (myJson) {
       console.log(myJson);
-      if (myJson.datos.length > 0) {
+      if (myJson.usuario.length > 0) {
+        localStorage.setItem("token", myJson.token);
         location.href = "./menu";
       } else {
         mensaje('Credencial incorrecta','Aceptar','focus_login()');

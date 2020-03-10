@@ -3,6 +3,7 @@
 use Slim\App;
 use Slim\Http\Request;
 use Slim\Http\Response;
+use \Firebase\JWT\JWT;
 require_once __DIR__ .'./../Conexion.php';
 
 return function (App $app) {
@@ -26,19 +27,34 @@ return function (App $app) {
         $stmt->bindParam(':login_usuario', $login_usuario); 
         $stmt->bindParam(':clave_usuario', $clave_usuario);
         $stmt->bindParam(':estado_usuario', $estado_usuario);
-        
+        $data= "";
+        $token= "";
+        $code= 404;
         if ($stmt->execute()) { 
             $data = $stmt->fetchAll(PDO::FETCH_OBJ);
-        } else {
-            
+            error_log(print_r($data, true));
+            if(sizeof($data) > 0){
+                $code = 200;
+                error_log($data[0]->id_usuario);
+                $data[0]->clave_usuario = "*";
+                $key = "clave_segura";
+                try {
+                    $payload = array(
+                        "iss" => "WEB",
+                        "aud" => "WEB",
+                        "usuario" => $data[0],
+                        "iat" => round(microtime(true)),
+                        "nbf" => round(microtime(true)),
+                        "exp" => round(microtime(true) + 300)
+                    );
+                    $token = JWT::encode($payload, $key);
+                } catch (\Exception $e) {
+                    error_log($e);
+                }
+            }
         }
-        
-        $data = array('datos' => $data);
+        $data = array('usuario' => $data, 'token' => $token);
         $conexion->cerrar($pgsql);
-        $code = 404;
-        if(sizeof($data["datos"]) > 0){
-            $code = 200;
-        }
         return $response->withHeader('Access-Control-Allow-Origin', '*')
                         ->withJson($data, $code);
     });

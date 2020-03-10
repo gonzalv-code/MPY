@@ -27,6 +27,8 @@ $middleware($app);
 
 // Register routes
 $routes = require __DIR__ . '/../src/routes/routes.php';
+$routes_sesion = require __DIR__ . '/../src/routes/routes_sesion.php';
+$routes_permisos = require __DIR__ . '/../src/routes/routes_permisos.php';
 $routes_usuarios = require __DIR__ . '/../src/routes/routes_usuarios.php';
 $routes_perfiles = require __DIR__ . '/../src/routes/routes_perfiles.php';
 $routes_cargos = require __DIR__ . '/../src/routes/routes_cargos.php';
@@ -49,6 +51,8 @@ $routes_compras_cabeceras = require __DIR__ . '/../src/routes/routes_compras_cab
 $routes_compras_detalles = require __DIR__ . '/../src/routes/routes_compras_detalles.php';
 
 $routes($app);
+$routes_sesion($app);
+$routes_permisos($app);
 $routes_usuarios($app);
 $routes_perfiles($app);
 $routes_cargos($app);

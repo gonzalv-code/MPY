@@ -1,3 +1,36 @@
+fetch("api/cargos/permisos", {
+    headers: {
+        "Content-Type": "application/json",
+        "Authorization": localStorage.token
+    }
+})
+    .then(function (response) {
+        return response.json();
+    })
+    .then(function (myJson) {
+        console.log(myJson);
+        if (!myJson.ok) {
+            localStorage.removeItem("token");
+            location.href = "./admin";
+        } else {
+            localStorage.token = myJson.token;
+            var botones = "";
+            $.each(myJson.permisos, function (key, value) {
+                if (value.agregar_permiso) {
+                    botones += "<button type='button' id='boton-agregar' class='btn btn-sm btn-primary' onclick='agregar()'>Agregar</button>\n";
+                }
+                if (value.modificar_permiso) {
+                    botones += "<button type='button' id='boton-modificar' class='btn btn-sm btn-success' onclick='modificar()'>Modificar</button>\n";
+                }
+                if (value.eliminar_permiso) {
+                    botones += "<button type='button' id='boton-eliminar' class='btn btn-sm btn-danger' onclick='eliminar()'>Eliminar</button>\n";
+                }
+            });
+            if (botones != "") {
+                $('#botonera').prepend(botones);
+            }
+        }
+    });
 $('#id_cargo').select();
 habilitar_agregar();
 siguiente_campo('#id_cargo', '#nombre_cargo', false);
@@ -12,7 +45,8 @@ function buscar_id() {
         fetch(url, {
             method: "GET",
             headers: {
-                "Content-Type": "application/json"
+                "Content-Type": "application/json",
+                "Authorization": localStorage.token
             }
         })
             .then(function (response) {
@@ -20,9 +54,10 @@ function buscar_id() {
             })
             .then(function (myJson) {
                 console.log(myJson);
-                if (myJson.datos.length > 0) {
-                    $('#id_cargo').val(myJson.datos[0].id_cargo);
-                    $('#nombre_cargo').val(myJson.datos[0].nombre_cargo);
+                localStorage.token = myJson.token;
+                if (myJson.cargo.length > 0) {
+                    $('#id_cargo').val(myJson.cargo[0].id_cargo);
+                    $('#nombre_cargo').val(myJson.cargo[0].nombre_cargo);
                     $('#nombre_cargo').select();
                     deshabilitar_agregar();
                 } else {
@@ -31,7 +66,10 @@ function buscar_id() {
                     $('#nombre_cargo').select();
                     habilitar_agregar();
                 }
-            });
+            }).catch(function(error) {
+                location.href = "./menu";
+                console.log('Hubo un problema con la petición Fetch:' + error.message);
+              });
     }
 }
 
@@ -123,12 +161,12 @@ function modificar() {
                 if (myJson.modificado) {
                     limpiar_campos();
                 } else {
-                    mensaje("ERROR: Registro no modificado","Aceptar","focus_nombre_cargo()");
+                    mensaje("ERROR: Registro no modificado", "Aceptar", "focus_nombre_cargo()");
                 }
             })
-            .catch(function(error) {
-                mensaje(`ERROR SERVIDOR: ${error.message}` ,"Aceptar","focus_nombre_cargo()");
-              });
+            .catch(function (error) {
+                mensaje(`ERROR SERVIDOR: ${error.message}`, "Aceptar", "focus_nombre_cargo()");
+            });
     }
 
 }
@@ -195,7 +233,7 @@ function focus_nombre_cargo() {
     $('#nombre_cargo').select();
 }
 
-function limpiar_campos(){
+function limpiar_campos() {
     $('#id_cargo').val(0);
     $('#nombre_cargo').val("");
     $('#id_cargo').select();
