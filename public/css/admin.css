@@ -21,3 +21,22 @@ body{
     margin-top: -225px;
     margin-left: -175px;
 }
+
+/*ayuda*/
+@media (min-width: 992px){
+    .modal-lg {
+        max-width: 1600px;
+    }
+}
+#indice{
+    height: 800px;
+    overflow-y: scroll;
+}
+#contenido{
+    height: 800px;
+    overflow-y: scroll;
+}
+
+ol{
+    list-style: none;
+}

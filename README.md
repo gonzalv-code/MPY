@@ -46,3 +46,6 @@ That's it! Now go build something cool.
 1. Bootstrap: https://www.youtube.com/watch?v=8nEDw7gGLYM&list=PLPl81lqbj-4IcaAluUlCTmbYz0h9XQ8U1
 2. GitHub: https://www.youtube.com/watch?v=zH3I1DZNovk&list=PL9xYXqvLX2kMUrXTvDY6GI2hgacfy0rId
 3. Slim: https://www.youtube.com/watch?v=iLRjbGC6jIs&t=1368s
+
+## CLASE 13/03/2020
+1. Modal de ayuda agregado en el menú (agregado estilos en admin.css, la función load en generar_menu() a fin de cargar el contenido de ayuda/index_menu.html en el modal, agregado también carpeta de ayuda en img y subcarpetas pertinentes, y en el template menu.phtml para el modal), items de la ayuda agregados de acuerdo al menú, los que no presentan imagen deben de terminarse, tanto los formularios como la ayuda. 4 horas reloj.

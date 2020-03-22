@@ -65,6 +65,7 @@ function generar_menu() {
           menu += "</li>\n";
         }
         $('#menu').html(menu);
+        $('#ayuda-contenido').load('ayuda/index_menu.html');
       }
     });
 }

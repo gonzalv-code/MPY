@@ -23,11 +23,31 @@
             <ul class="navbar-nav mr-auto" id="menu">
             </ul>
         </div>
+        <button type="button" class="btn btn-light" data-toggle="modal" data-target="#ayuda-modal"><i class="fas fa-question"></i> Ayuda</button>
         <button type="button" class="btn btn-light" onclick="salir_menu()"><i class="fas fa-sign-out-alt"></i> Cerrar Sesión</button>
     </nav>
 
     <div class="formularios"></div>
     <div class="busquedas"></div>
+
+    <div id="ayuda-modal" class="modal fade bd-example-modal-xl" tabindex="-1" role="dialog" aria-labelledby="myExtraLargeModalLabel" aria-hidden="true">
+        <div class="modal-dialog modal-lg">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="exampleModalLabel">Ayuda del Sistema</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body" id="ayuda-contenido">
+                    
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-primary" data-dismiss="modal">Aceptar</button>
+                </div>
+            </div>
+        </div>
+    </div>
 
     <script src="js/jquery.min.js"></script>
     <script src="js/bootstrap.min.js"></script>
