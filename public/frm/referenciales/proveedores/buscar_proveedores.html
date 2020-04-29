@@ -1,14 +1,14 @@
 <div class="card">
     <div class="card-header text-center bg-primary text-white">
-        Buscar Cargos
+        Buscar Proveedores
     </div>
     <div class="card-body">
         <table class="table table-hover table-bordered table-striped">
             <thead>
                 <tr>
-                    <th>Id</th>
-                    <th>Nombre iva</th>
-                    <th>Porcentaje iva</th>
+                    <th>Id proveedor</th>
+                    <th>Id persona</th>
+                    <th>Estado proveedor</th>
                 </tr>
             </thead>
             <tbody id="tbody_datos">
@@ -17,10 +17,10 @@
         </table>
     </div>
     <div class="card-footer text-center">
-        <button type="button" class="btn btn-sm btn-warning" onclick="salir_busqueda('#nombre_iva')">Salir</button>
+        <button type="button" class="btn btn-sm btn-warning" onclick="salir_busqueda('#id_persona')">Salir</button>
     </div>
 </div>
 
 <script>
-    buscar_nombre();
+    buscar_id_persona();
 </script>
